@@ -8,19 +8,47 @@
 %% \part and \chapter are only available in report and book document classes
 
 \chapter{Introduction}
-
-\section{State Of The Art}
 Here is presented the current landscape about the main topics of this thesis such as, how to measure heart rate, exams digitalization and standards, what is cloud computing and how does it apply to health activities.
-\subsection{Ecg Solutions}
-\subsubsection{12-lead ECG}
+\section{Cloud Computing}
+\subsection{Definition}
+Cloud Computing bas become a buzzword since it is used most of the time improperly and due to the great number of definitions. By the way, cloud computing is not a completely new concept, it is correlated to the 13 years old grid computing paradigm and to distributed systems in general.\cite{foster}\\
+A little consensus has been reached defining cloud computing as\\
+\textit{A large-scale distributed computing paradigm that is driven by economies of scale, in which a pool of abstracted, virtualized, dynamically-scalable, managed computing power, storage, platforms, and services are delivered on demand to external customers over the Internet.}\\
+Concluding, this paradigm with respect to the traditional ones, it is
+\begin{itemize}
+    \item It is massively scalable
+    \item Delivers different levels of services to customers outside the cloud
+    \item It is dynamically scaled and configured
+\end{itemize}
+\cite{foster}
+
+\subsection{Infrastructure models}
+\paragraph{Paas}
+\paragraph{Iaas}
+\paragraph{Saas}
+\paragraph{Serverless}
+\paragraph{Private Cloud}
+\paragraph{Public Cloud}
+\paragraph{Hybrid Cloud}
+\subsection{Security}
+
+\section{Web Services}
+\subsection{Definition}
+\subsection{Web Services architectures}
+%\subsection{EHR Web Services Implementation}
+
+
+
+
+
+\section{eHealth}
+\subsection{12-lead ECG}
 12-Lead Ecg is one of the most used methodology in clinical cardiac medicine, it consists on attaching 10 electrodes on the surface of the limbs and the chest and therefore generates 12-lead: 12 groups of signals. The overall magnitude of the heart's electrical potential is then measured from twelve different angles (called leads) and is recorded in seconds over a period of time.\\
 The graph of voltage versus time is referred to as electrocardiogram, which is considered the main tool for standard ECG analysis. \cite{electrocardiography_it} \cite{electrocardiography_en}\\
 This methodology is fundamental for Myocardial infarction, Ischemia, Heart arrhythmia, Heart failure, Artificial cardiac pacemaker interested patients. Traditionally each instrument generates vendor-specific waveform data formats which are compressed or encrypted by their own algorithms.\\
 Unfortunately clinically used 12-lead ECG instruments are limited to the use in the hospitals. Due to the great variability of 12-lead ECG instruments and medical specialists interpretation skills, it remains a challenge to deliver rapid and accurate 12-lead ECG reports with senior cardioligists decision making support.\cite{Hsieh2012}
-%\subsubsection{Dynamic ECG}
-%\subsubsection{Holter monitor}
-  
-
+%\subsection{Dynamic ECG}
+%\subsection{Holter monitor}
 
 \subsubsection{ECG Digitalization}
 The transmission, storage, and management of digital ECG signals have turned into major topics of debate and investigation. Within the context of this debate, the standardization of these processes has been a key issue lasting recent decades. \cite{trigo} The result is a multitude of format and standard which of course hinder the design and development of end-to-end standard-based systems, even if a lot of mapping procedures between ECG formats has been created to solve the problem.\\
@@ -32,6 +60,26 @@ An SCP-ECG revision Project Team lead by Paul Rubel and Alois Schloegl has been 
 The standard addresses specifically compression and communication of resting ECGs for different methodologies such as Holter, Exercise ECGs and real-time monitoring.\\
 In 2002, the first open source online platform for SCP-ECG certification and conformance testing has been developed.\cite{Chronaki}\\
 
+\section{Electronical Health Record}
+Medical record, medical chart and health record are different terms to describe the documentation of a patient history and care.\\
+Traditionally, health records were written on paper, maintained in folders divided into sections based on the type of note, and only one copy was available.
+Computer Technology developed in the 60s and 70s laid the foundation for the development of the Electronic Health Record.\\
+As inadequacies of the paper record became increasingly more apparent in 1992, the American Institute of Medicine advocated a shift from a paper-based to an electronic medical record one.\cite{Evans2016ElectronicHR}\\
+An Electronic Health Record (EHR) is defined as a repository of many Electronic Medical Records (EMR), which are a digital version of a chart with patient information stored in a computer, it refers to everything possible to find in a paper chart, such as medical history, diagnoses, medications, immunization dates and allergies.\cite{emr}\\
+Indeed represents a medical record within a single facility, such as a doctor's office or a clinic.\\
+Around 1992 in US, EHRs were developed and used at a number of academic inpatient and outpatient medical facilities, but none contained all the information in the paper chart and most EHRs today are still a hybrid collection of computerized and paper data.
+\cite{Evans2016ElectronicHR}\\
+Because the regionalization of the Italian Healthcare System, there exists discrepancies among the different areas of the country, which the use of IT technologies may be useful to solve. In 2010 the Italian government introduced the electronic health record (EHR) implementation, which includes a minimum core of essential documents that should be created and updated by general practitioners.\\
+During March 2017 the Italian e-health experts met for an \textit{InnovationLab}, there were government agencies, CEO and managers of important health companies, national care administrators and scholars. Their aim was to unlock the Italian health welfare because the state inadequacy, completing rapidly the e-health plan and the EHR (aka Fascicolo Sanitario Elettronico). They ended up with the \textit{"Carta di Salerno"}: an agreement to project the Italian Smart Health.
+In 2002, an experts group from Cup2000 Spa designed a regional e-health network called SOLE (Sanità OnLinE) which would be part of the FSE. Later in 2009 it was finally possible to the Regional Healthcare Users to use the system while in 2013 it became national law inside the \textit{"Digital Agenda"} proceedings.\\
+Recently in 2015 the FSE has been technically defined and each region started its own repository with the related IT company.
+\cite{smarthealth}
+\subsection{Accredited organization}
+Health Level Seven International (HL7), is a non-profit organization involved in the development of international healthcare informatics interoperability standards known as Health Level 7 (HL7).\\
+HL7 is an international community of healthcare subject matter experts and information scientists collaborating to create a framework (and related standards) for the exchange, integration, sharing, and retrieval of electronic health information.[2] HL7 promotes the use of such informatics standards within and among healthcare organizations to increase the effectiveness and efficiency of healthcare information delivery for the benefit of all.
+\cite{hl7}
+
+
 \subsection{eHealth (Cloud Computing Application To Medical Device)}
 E-Health underlies cloud computing for clinical use, which John Mitchell from Sydney university defines as:"\textit{The health industry's equivalent of e-commerce}". From an integration perspective, e-health are:"\textit{integrated healthcare systems}" whose sum is much more than the one obtained from the single components. Even if the meaning varies among different contexts \cite{Eysenbach} it is possibile to define e-health as the set of technological themes in health today, whose initiatives do not originate necessarily with the patient. \cite{oh}\cite{DellaMea}
 A technological improvement is represented by the e-health cloud computing birth, according to Foster et al. cloud computing is \textit{"A computing paradigm which is a pool of abstracted, virtualized, dynamically scalable, managing, computing power storage platforms and services  for on demand delivery over the Internet"} \cite{foster}, moreover CC offers a pay-as-you-use model helping healthcare industry cope with current and future demands, keeping the cost minimum. \cite{AbuKhousa}
@@ -41,10 +89,3 @@ It is possible to find many examples of e-health cloud implementation, here are 
 Shah J.Miah et al. developed an e-health consultancy system using cloud computing that enables doctors and healthcare workers to identify and treat non-communicable diseases in rural and remote communities in Bangladesh, a developing nation. \cite{MIAH2017311}\\\\
 Sri Vijay BharatPeddi et al. propose a cloud-based mobile e-health daily calorie intake measurement system that can classify food objects in the plate and further compute the overall calorie of each food object with high accuracy. The novelty of the system is to avoid the  heavy offload of computational system functions to the cloud, but also employing an intelligent cloud-broker mechanism to strategically and efficiently utilize cloud instances \cite{PEDDI201771}\\\\
 Mohamed Estai et al. showed a store-and-forward telemedicine platform “Remote-I” to assist in the screening of oral diseases using an image acquisition Android app operated by 17 teledental assistants. A total of 485 images (five images per case) were directly transmitted from the Android app to the server. Then a panel of five dental practitioners assessed the images and reported their diagnosis.\cite{mohamedestai}
-
-
-\section{Thesis Structure}
-\label{sec:greetings}
-
-Hello!
-I greeted in section~\ref{sec:greetings}.
