@@ -29,6 +29,11 @@ And different kind of network topology such as
 \end{itemize}
 
 \section{System Architecture}
-As shown in the picture, several Amazon Web Services were used to develop the Cardioline's Cloud infrastructure.
+As shown in the picture \ref{fig:architecture}, several Amazon Web Services were used to develop the Cardioline's Cloud infrastructure.
 Everything but the SES Service is hosted in the eu-central-1 region in Frankfurt. Such region is divided into availability zones connected through low-latency links, in order to handle potential instance failures by replacing those failed instances with the standby ones placed in a different availability zone.\\
-\includegraphics[width=\textwidth]{architecture}
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{architecture}
+    \caption{a nice plot}
+    \label{fig:architecture}
+\end{figure}
