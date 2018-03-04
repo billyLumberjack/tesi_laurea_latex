@@ -3,7 +3,7 @@ Cardioline is present on the market from the early 60s, they started developing 
 Thus the company started to sell a system able to produce heart rate monitoring digital documents for different methodologies, forward them to a Software for the storage, alert the physicians and let them write their own examination.
 \section{Software and Frameworks involved}
 The managment software tool is based on the .NET platform, since the 32-bit libraries for the SCP-ECG format are microsoft technologies based.
-Cardioline provides each customer with a Windows Server Machine running a webapplication implemented with the ASP .NET MVC Framework.
+Cardioline provides each customer with a Windows Server Machine running their webapplications realized with ASP .NET.
 \section{Project target And System requirements}
 The scope is to provide future customers with additional features of the managment application, avoiding the burden to keep up and running their own machines and infrastructure.
 While Respecting the European jurisprudence in privacy subject, integrating their system with the national e-healthcare system.
@@ -15,7 +15,7 @@ Centralizing such services involved some problems,
     \item Continuity with legacy software
 \end{itemize}
 \section{Provider choice}
-It has been decided to face the computing and network load problem using Computing Cloud technologies, since they let the developer choose which grade of control she/he wants over the system, and how to structure the network.
+It has been decided to face the computing and network load problem using Computing Cloud technologies, since they let the developer choose the desired grade of control and customization over the system, and how to structure the network.
 In particular the principal Cloud Computing providers offers this kinds of services
 \begin{itemize}
     \item Saas
@@ -29,3 +29,6 @@ And different kind of network topology such as
 \end{itemize}
 
 \section{System Architecture}
+As shown in the picture, several Amazon Web Services were used to develop the Cardioline's Cloud infrastructure.
+Everything but the SES Service is hosted in the eu-central-1 region in Frankfurt. Such region is divided into availability zones connected through low-latency links, in order to handle potential instance failures by replacing those failed instances with the standby ones placed in a different availability zone.\\
+\includegraphics[width=\textwidth]{architecture}
