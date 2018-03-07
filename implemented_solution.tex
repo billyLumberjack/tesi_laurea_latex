@@ -10,14 +10,12 @@ The persistency is achieved by a Relational Database Service (RDS) running Amazo
 Furthermore, RDS provides a standby and synchronous Database, hosted in another availability zone, that is ready to become the new master in case of failure of the current master.\\
 Furthermore all the assets and static files are read and written from/to AWS S3 relative bucket.\\
 The notification System is triggered by DB events and carried on by AWS Lambda functions using Amazon Simple Email Service (SES) as delivery service to final users. The service is not available in the Frankfurt region. For this reason, the Ireland region was chosen.
-
-
-
-\begin{figure}[h]
+\begin{figure}
     \includegraphics[width=\textwidth]{architecture}
     \caption{Architecture Scheme}
     \label{fig:architecture}
 \end{figure}
+
 \section{Ecg Workflow}
 \begin{figure}[h]
     \includegraphics[width=5cm]{ECGstatechart}
