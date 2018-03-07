@@ -5,7 +5,7 @@
 Since Amazon Elastic Beanstalk (EB) has been used as the core component to manage the system, it has been possibile to use an Infrastructure as a Service grade of customization, with an easier configuration and building phase as if the system were Platform as a Service instead.\\
 As shown in the picture \ref{fig:architecture}, everything but the SES service is hosted in the eu-central-1 region in Frankfurt, to reduce latency, minimize costs and keep healthcare data in an European law venue, as in production would be.
 The region is divided into avaiability zones connected each other with low-latency links, so to handle potential instance failures by replacing them with the standby ones placed in a different availability zone.\\
-EB handles instances for different WebApplication (WebReceiver\ref{par:webreceiver} and WebUploader\ref{par:webuploader})
+EB handles instances for different WebApplications and tasks (EcgWebApp\ref{par:webreceiver} and WebUploader\ref{par:webuploader})
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{architecture}
@@ -18,13 +18,16 @@ EB handles instances for different WebApplication (WebReceiver\ref{par:webreceiv
     \caption{Electrocardiogram State Chart}
     \label{fig:ECGstatechart}
 \end{figure}
-\section{Notification}
+\section{Web Applications Involved}
+\subsection{EcgWebApp}
+\subsection{Web Receiver}
+\subsection{Web Uploader}
+\section{S3 Bucket synchronization}
 \section{Interoperability of digital electrocardiograms data}
-\subsection{Resting}
-\subsection{Cardiac stress test}
-\subsection{Holter}
-\paragraph{Web Receiver}
+\paragraph{Resting}
+\paragraph{Cardiac stress test}
+\paragraph{Holter}
+
 \label{par:webreceiver}
 
-\paragraph{Web Uploader}
-\paragraph{S3 Bucket synchronization}
+
