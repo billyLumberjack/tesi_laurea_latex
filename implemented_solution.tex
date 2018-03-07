@@ -2,6 +2,11 @@
 \section{Amazon Web Services}
 
 \subsection{Architecture}
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{architecture}
+    \caption{Architecture Scheme}
+    \label{fig:architecture}
+\end{figure}
 Since Amazon Elastic Beanstalk (EB) has been used as the core component to manage the system, it has been possibile to use an Infrastructure as a Service grade of customization, with an easier configuration and building phase as if the system were Platform as a Service instead.\\
 As shown in the picture \ref{fig:architecture}, everything but the SES service is hosted in the eu-central-1 region in Frankfurt, to reduce latency, minimize costs and keep healthcare data in an European law venue, as in production would be.
 The region is divided into avaiability zones connected each other with low-latency links, so to handle potential instance failures by replacing them with the standby ones located in a different availability zone.\\
@@ -10,11 +15,7 @@ The persistency is achieved by a Relational Database Service (RDS) running Amazo
 Furthermore, RDS provides a standby and synchronous Database, hosted in another availability zone, that is ready to become the new master in case of failure of the current master.\\
 Furthermore all the assets and static files are read and written from/to AWS S3 relative bucket.\\
 The notification System is triggered by DB events and carried on by AWS Lambda functions using Amazon Simple Email Service (SES) as delivery service to final users. The service is not available in the Frankfurt region. For this reason, the Ireland region was chosen.
-\begin{figure}
-    \includegraphics[width=\textwidth]{architecture}
-    \caption{Architecture Scheme}
-    \label{fig:architecture}
-\end{figure}
+
 
 \section{Ecg Workflow}
 \begin{figure}[h]
