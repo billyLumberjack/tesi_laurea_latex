@@ -18,18 +18,19 @@ The notification System is triggered by DB events and carried on by AWS Lambda f
 
 
 \section{Ecg Workflow}
-\begin{wrapfigure}
-    \includegraphics[width=5cm]{img/ECGstatechart}
-    \caption{Electrocardiogram State Chart}
-    \label{fig:ECGstatechart}
-\end{figure}
 
-%\begin{wrapfigure}{r}{0.5\textwidth}
-%  \begin{center}
-%    \includegraphics[width=0.48\textwidth]{gull}
-%  \end{center}
-%  \caption{A gull}
-%\end{wrapfigure}
+%\begin{wrapfigure}
+%    \includegraphics[width=5cm]{img/ECGstatechart}
+%    \caption{Electrocardiogram State Chart}
+%    \label{fig:ECGstatechart}
+%\end{figure}
+
+\begin{wrapfigure}{r}
+  \begin{center}
+    \includegraphics[width=5cm]{img/ECGstatechart}
+  \end{center}
+  \caption{Electrocardiogram State Chart}
+\end{wrapfigure}
 
 Resting Electrocardiogram (\ref{paragraph:Resting}) are uploaded from different device types such as, mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST (\ref{paragraph:REST}) interface, the exam is stored in a \textit{pending} state and every associated referring physician notified.
 Once a \textit{pending} exam is reported
