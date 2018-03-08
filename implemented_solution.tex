@@ -3,7 +3,7 @@
 
 \subsection{Architecture}
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{architecture}
+    \[width=\textwidth]{img/architecture}
     \caption{Architecture Scheme}
     \label{fig:architecture}
 \end{figure}
@@ -19,11 +19,12 @@ The notification System is triggered by DB events and carried on by AWS Lambda f
 
 \section{Ecg Workflow}
 \begin{figure}[h]
-    \includegraphics[width=5cm]{ECGstatechart}
+    \includegraphics[width=5cm]{img/ECGstatechart}
     \caption{Electrocardiogram State Chart}
     \label{fig:ECGstatechart}
 \end{figure}
-ciodejiwofjeiowjxfioerl,jforeq
+Resting Electrocardiogram (\ref{paragraph:Resting}) are uploaded from different device types such as, mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST (\ref{paragraph:REST}) interface, the exam is stored in a \textit{pending} state and every associated referring physician notified.
+Once a \textit{pending} exam is reported
 \section{Web Applications Involved}
 \subsection{EcgWebApp}
 \label{subsection:ecgwebapp}
@@ -33,8 +34,11 @@ ciodejiwofjeiowjxfioerl,jforeq
 \section{S3 Bucket synchronization}
 \section{Interoperability of digital electrocardiograms data}
 \paragraph{Resting}
+\label{paragraph:Resting}
 \paragraph{Cardiac stress test}
+\label{paragraph:Cardiac stress test}
 \paragraph{Holter}
+\label{paragraph:Holter}
 
 
 
