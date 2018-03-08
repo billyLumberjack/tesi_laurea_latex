@@ -7,7 +7,7 @@
     \caption{Architecture Scheme}
     \label{fig:architecture}
 \end{figure}
-Since Amazon Elastic Beanstalk (EB) has been used as the core component of the system, it has been possible to use an infrastructure as a service (IaaS \label{paragraph:Iaas}) grade of customization, with an easier configuration and building phase as if the system was platform as a service (Paas \ref{paragraph:Paas}) instead.\\
+Since Amazon Elastic Beanstalk (EB) has been used as the core component of the system, it has been possible to use an infrastructure as a service (IaaS \ref{paragraph:Iaas}) grade of customization, with an easier configuration and building phase as if the system was platform as a service (PaaS \ref{paragraph:Paas}) instead.\\
 As shown in picture \ref{fig:architecture}, everything but the Amazon Simple Email Service (SES \cite{AmazonSes}) service is hosted in the eu-central-1 region in Frankfurt to reduce latency, minimize costs and keep healthcare data in an European law venue, as in production would be.
 The region is divided into availability zones connected to each other with low-latency links, so to handle potential instance failures by replacing them with the standby ones located in a different availability zone.\\
 EB handles the WebServer instances: one for the EcgWebApp, more details in section \ref{subsection:ecgwebapp} and the other one for WebReceiver,section \ref{subsection:webreceiver}. The interaction is then allowed to authenticated users bounded to their capabilities and role.\\
