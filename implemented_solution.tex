@@ -40,6 +40,13 @@ Once the history of a \textit{pending} exam is supplied (\ref{fig:aggiunta_anamn
 It has been used beanstalk to handle instances for two different webapplications, EcgWebApp (\ref{subsection:ecgwebapp}) for resting and cardiac stress test and WebReceiver (\ref{subsection:webreceiver}) for Holter methodology.
 \subsection{EcgWebApp}
 \label{subsection:ecgwebapp}
+It's a 3-tier deployment architecture based on Microsoft .NET platform which components are,
+\begin{itemize}
+    \item WebBased UI & REST \textit{- client interface}
+    \item WebServer \textit{- handles http requests dispatching and routing to AppServer modules (IIS)}
+    \item Application Server \textit{- ASP .NET Framework based business logic}
+    \item RDBMS \textit{- Amazon Aurora RDS}
+\end{itemize}
 \subsection{Web Receiver}
 \label{subsection:webreceiver}
 \subsection{Web Uploader}
