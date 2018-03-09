@@ -18,12 +18,12 @@ The notification System is triggered by DB events and carried on by AWS Lambda f
 
 
 \section{Ecg Workflow}
-\begin{wrapfigure}{r}{6cm} %this figure will be at the right
+\begin{figure}[h] %this figure will be at the right
     \centering
     \includegraphics[width=6cm]{img/ECGstatechart}
     \caption{Electrocardiogram State Chart}
     \label{fig:ECGstatechart}
-\end{wrapfigure}
+\end{figure}
  
 Resting Electrocardiogram (\ref{paragraph:Resting}) are uploaded from different device types such as, mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST (\ref{paragraph:REST}) interface, the exam is stored in a \textit{pending} state and every associated physician notified for the anamnesis provisioning.
 The user interface for a physician with anamnesis providing rights logged in is displayed in \ref{fig:todo_anamnesi}.
