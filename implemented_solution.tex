@@ -37,6 +37,7 @@ The user interface for a physician with anamnesis providing rights logged in is 
 Once the history of a \textit{pending} exam is supplied (\ref{fig:aggiunta_anamnesi}) it passes to a \textit{ready} state, at this point every associated doctor with review role and permission, usually a cardiologist is notified and allowed to write its own conclusion, as showed in figure \ref{fig:aggiunta_anamnesi}, and eventually ask for a second opinion from another expert. The exam state is finally set to \textit{confirmed} and the patient doctor notified.
 
 \section{Web Applications Involved}
+It has been used beanstalk to handle instances for two different webapplications, EcgWebApp (\ref{subsection:ecgwebapp}) for resting and cardiac stress test and WebReceiver (\ref{subsection:webreceiver}) for Holter methodology.
 \subsection{EcgWebApp}
 \label{subsection:ecgwebapp}
 \subsection{Web Receiver}
