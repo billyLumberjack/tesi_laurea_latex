@@ -32,9 +32,10 @@ The notification System is triggered by DB events and carried on by AWS Lambda f
     \label{fig:ECGstatechart}
 \end{wrapfigure}
  
+Resting Electrocardiogram (\ref{paragraph:Resting}) are uploaded from different device types such as, mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST (\ref{paragraph:REST}) interface, the exam is stored in a \textit{pending} state and every associated physician notified for the anamnesis provisioning.
+The user interface for a physician with anamnesis providing rights logged in is displayed in \ref{fig:todo_anamnesi}.
+Once the history of a \textit{pending} exam is supplied (\ref{fig:aggiunta_anamnesi}) it passes to a \textit{ready} state, at this point every associated doctor with review role and permission, usually a cardiologist is notified and allowed to write its own conclusion, as showed in figure \ref{fig:aggiunta_anamnesi}, and eventually ask for a second opinion from another expert.
 
-Resting Electrocardiogram (\ref{paragraph:Resting}) are uploaded from different device types such as, mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST (\ref{paragraph:REST}) interface, the exam is stored in a \textit{pending} state and every associated referring physician notified.
-Once a \textit{pending} exam is reported
 \section{Web Applications Involved}
 \subsection{EcgWebApp}
 \label{subsection:ecgwebapp}
@@ -50,6 +51,24 @@ Once a \textit{pending} exam is reported
 \paragraph{Holter}
 \label{paragraph:Holter}
 
+\section{Screenshots}
+\begin{figure}[h]
+    \includegraphics[width=textwidth]{img/todo_anamnesi}
+    \caption{User interface showing anamnesis needed}
+    \label{fig:todo_anamnesi}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=textwidth]{img/aggiunta_anamnesi}
+    \caption{User interface showing anamnesis provisioning}
+    \label{fig:aggiunta_anamnesi}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=textwidth]{img/refertazione_esame}
+    \caption{Conclusion provisioning user interface}
+    \label{fig:refertazione_esame}
+\end{figure}
 
 
 
