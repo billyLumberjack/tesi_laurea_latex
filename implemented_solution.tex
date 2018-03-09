@@ -39,6 +39,8 @@ It's a 3-tier deployment architecture (\ref{fig:tiers_diagram}) based on Microso
     \item \textit{Application Server} - ASP .NET Framework based business logic
     \item \textit{RDBMS (Relational Database Management System)} - Amazon Aurora and Amazon Simple Cloud Storage Service (S3)
 \end{itemize}
+The MVC \textit{(Model View Controller)} paradigm allows to isolate the domain specific logic from the input and presentation ones, making testing and developent easier. \cite{wikipedia_mvc}\\
+In this context the \textit{model} includes objects as exams and patients and their relations, which are mapped to MySql Database Entities by Entity Framework (EF), an open source object-relational-mapping tool (ORM) developed in Microsoft \cite{wikipedia_ef}, in order to work without taking care of the underlying database tables and columns where data are actually stored. Indeed developers deal with an higher level of abstraction.
 \begin{figure}
     \includegraphics[width=\textwidth]{img/tiers_diagram}
     \caption{3-tier architecture}
