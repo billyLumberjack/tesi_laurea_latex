@@ -34,7 +34,7 @@ The notification System is triggered by DB events and carried on by AWS Lambda f
  
 Resting Electrocardiogram (\ref{paragraph:Resting}) are uploaded from different device types such as, mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST (\ref{paragraph:REST}) interface, the exam is stored in a \textit{pending} state and every associated physician notified for the anamnesis provisioning.
 The user interface for a physician with anamnesis providing rights logged in is displayed in \ref{fig:todo_anamnesi}.
-Once the history of a \textit{pending} exam is supplied (\ref{fig:aggiunta_anamnesi}) it passes to a \textit{ready} state, at this point every associated doctor with review role and permission, usually a cardiologist is notified and allowed to write its own conclusion, as showed in figure \ref{fig:aggiunta_anamnesi}, and eventually ask for a second opinion from another expert.
+Once the history of a \textit{pending} exam is supplied (\ref{fig:aggiunta_anamnesi}) it passes to a \textit{ready} state, at this point every associated doctor with review role and permission, usually a cardiologist is notified and allowed to write its own conclusion, as showed in figure \ref{fig:aggiunta_anamnesi}, and eventually ask for a second opinion from another expert. The exam state is finally set to \textit{confirmed} and the patient doctor notified.
 
 \section{Web Applications Involved}
 \subsection{EcgWebApp}
