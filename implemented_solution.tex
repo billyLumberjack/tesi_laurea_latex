@@ -7,7 +7,7 @@
     \caption{Architecture Scheme}
     \label{fig:architecture}
 \end{figure}
-Since Amazon Elastic Beanstalk (EB) has been used as the core component of the system, it has been possible to use an infrastructure as a service (IaaS \ref{paragraph:Iaas}) grade of customization, with an easier configuration and building phase as if the system was platform as a service (PaaS \ref{paragraph:Paas}) instead.\\
+Since Amazon Elastic Beanstalk (EB) has been used as the core component of the n-tier system, it has been possible to use an infrastructure as a service (IaaS \ref{paragraph:Iaas}) grade of customization, with an easier configuration and building phase as if the system was platform as a service (PaaS \ref{paragraph:Paas}) instead.\\
 As shown in picture \ref{fig:architecture}, everything but the Amazon Simple Email Service (SES \cite{AmazonSes}) service is hosted in the eu-central-1 region in Frankfurt to reduce latency, minimize costs and keep healthcare data in an European law venue, as in production would be.
 The region is divided into availability zones connected to each other with low-latency links, so to handle potential instance failures by replacing them with the standby ones located in a different availability zone.\\
 EB handles the WebServer instances: one for the EcgWebApp, more details in section \ref{subsection:ecgwebapp} and the other one for WebReceiver,section \ref{subsection:webreceiver}. The interaction is then allowed to authenticated users bounded to their capabilities and role.\\
@@ -29,8 +29,8 @@ Once the history of a \textit{pending} exam has been supplied (screenshot at fig
 \end{figure}
 \clearpage
 
-\section{Web Applications Involved}
-It has been used Elastic Beanstalk to handle instances for two different webapplications, EcgWebApp (\ref{subsection:ecgwebapp}) for resting and cardiac stress test and WebReceiver (\ref{subsection:webreceiver}) for Holter methodology.
+\section{Interoperability related components (o tiers ?)}
+The biggest contribution has been provided to the architecture components which interact with an external service, as it is possible to observe in figure \ref{fig:architecture}, they are mainly two, EcgWebApp (\ref{subsection:ecgwebapp}) for resting and cardiac stress test and WebReceiver (\ref{subsection:webreceiver}) for the Holter methodology.
 \subsection{EcgWebApp}
 \label{subsection:ecgwebapp}
 It's a 3-tier deployment architecture (\ref{fig:tiers_diagram}) based on Microsoft ASP .NET MVC framework, its main components are,
@@ -54,6 +54,7 @@ The \textit{view} manages data presentation, serving html pages or json formatte
     \caption{Each application resource has been implemented following this pattern}
     \label{fig:app_resource_pattern}
 \end{figure}
+WebServices included in EcgWebApp are based on the ASP .NET WebApi Framework, a REST interface triggers a specific action on a resource depending on the URL parameters and the HTTP verb used.
 
 \subsection{Web Receiver}
 \label{subsection:webreceiver}
