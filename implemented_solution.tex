@@ -39,12 +39,18 @@ It's a 3-tier deployment architecture (\ref{fig:tiers_diagram}) based on Microso
     \item \textit{Application Server} - ASP .NET Framework based business logic
     \item \textit{RDBMS (Relational Database Management System)} - Amazon Aurora and Amazon Simple Cloud Storage Service (S3)
 \end{itemize}
-The MVC \textit{(Model View Controller)} paradigm allows to isolate the domain specific logic from the input and presentation ones, making testing and development easier. \cite{mvc}\\
-In this context the \textit{model} includes objects as exams and patients and their relations, which are mapped to MySql Database Entities by Entity Framework (EF), an open source object-relational-mapping tool (ORM) developed by Microsoft, in order to work without taking care of the underlying database tables and columns where data are actually stored. Indeed developers deal with an higher level of abstraction. \cite{wikipedia_ef}
 \begin{figure}
     \includegraphics[width=\textwidth]{img/tiers_diagram}
     \caption{3-tier architecture}
     \label{fig:tiers_diagram}
+\end{figure}
+The MVC \textit{(Model View Controller)} paradigm allows to isolate the domain specific logic from the input and presentation ones, making testing and development easier. \cite{mvc}\\
+In this specific context the \textit{model} includes objects as exams and patients and their relations, which are mapped to MySql Database Entities by Entity Framework (EF), an open source object-relational-mapping tool (ORM) developed by Microsoft, in order to work without taking care of the underlying database tables and columns where data are actually stored. Indeed developers deal with an higher level of abstraction. \cite{wikipedia_ef}
+The \textit{view} manages the information presentation, serving html pages or json formatted data, as show in figure \ref{fig:app_resource_pattern}.\\
+\begin{figure}
+    \includegraphics[width=\textwidth]{img/app_resource_pattern}
+    \caption{Each application respurce has been developed following this pattern}
+    \label{fig:app_resource_pattern}
 \end{figure}
 
 \subsection{Web Receiver}
