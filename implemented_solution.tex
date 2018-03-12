@@ -18,6 +18,7 @@ All the assets and static files are read and written from/to AWS S3 relative buc
 The notification System is triggered by DB events and carried on by AWS Lambda functions using Amazon Simple Email Service (SES) as delivery service to final users. This service is not available in the Frankfurt region hence, the Ireland region was chosen.
 
 \section{Ecg Workflow}
+\label{section:ecgworkflow}
 Resting Electrocardiogram (\ref{paragraph:Resting}) are uploaded from different device types such as, mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST (details about REpresentational State Transter\ref{paragraph:REST}) interface, the exam is stored in a \textit{pending} state and every associated physician notified for the anamnesis provisioning.
 The user interface for a physician with anamnesis providing rights logged in is displayed in fig.\ref{fig:todo_anamnesi}.
 Once the history of a \textit{pending} exam has been supplied (screenshot at fig.\ref{fig:aggiunta_anamnesi}) it passes to a \textit{ready} state, at this point every associated doctor with review role and permission, usually a cardiologist, is notified and allowed to write its own conclusion, as showed in figure \ref{fig:aggiunta_anamnesi}, and eventually ask for a second opinion from another expert. The exam state is finally set to \textit{confirmed} and the patient doctor notified.
@@ -41,8 +42,8 @@ Once the history of a \textit{pending} exam has been supplied (screenshot at fig
 The biggest contribution has been provided to the architecture components which interact with an external service, as it is possible to observe in figure \ref{fig:architecture}, they are mainly two, EcgWebApp (\ref{paragraph:ecgwebapp}) for resting and cardiac stress test and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) for the Holter methodology.
 
 \subsection{Web service and application}
-Theese components instances are directly handled by Amazon Web Service Elastic Beanstalk (details at \ref{fig:architecture}), their load balancers and resources are dinamically allocated over the current request and load configured parameters.\\
-They both run on a 64-bit Windows Server 2012 R2 (with 32-bit compatibility) machine executing IIS 8.5.
+Theese components instances are directly handled by Amazon Web Service Elastic Beanstalk (details at \ref{fig:architecture}), their load balancers and resources are dinamically allocated over the current request, load and configured parameters.\\
+They both run on a 64-bit Windows Server 2012 R2 (with 32-bit compatibility) virtual machine executing IIS 8.5.
 \paragraph{EcgWebApp}
 \label{paragraph:ecgwebapp}
 It's a 3-tier deployment architecture (\ref{fig:tiers_diagram}) based on Microsoft ASP .NET MVC framework, its main components are,
@@ -66,7 +67,8 @@ The \textit{view} manages data presentation, serving html pages or json formatte
     \caption{Each application resource has been implemented following this pattern}
     \label{fig:app_resource_pattern}
 \end{figure}
-WebServices included in EcgWebApp are based on the ASP .NET WebApi Framework, a REST interface triggers a specific action on a resource depending on the URL parameters and the HTTP verb used. Basic Authentication is used to provide access control to web resources.
+WebServices included in EcgWebApp are based on the ASP .NET WebApi Framework, a REST interface triggers a specific action on a resource depending on the URL parameters and the HTTP verb used. Basic Authentication is used to provide access control to web resources.\\\\
+After any kind of client uploaded a new ecg belonging to a particular patient, unit and tenant, the [TO FINISH]
 
 \paragraph{Ecg Web Receiver}
 \label{paragraph:ecgwebreceiver}
@@ -76,9 +78,17 @@ Compared to EcgWebApp (\ref{paragraph:ecgwebapp}) the Ecg WebReceiver component 
 Here is presented a set of client applications for CRUD operations which interact with the previously defined components, EcgWebApp (\ref{paragraph:ecgwebapp}) and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) over the HTTP protocol.
 \paragraph{Touch Ecg}
 Touch Ecg is a Cardioline electrocardiograph 12-lead (more details for 12-lead at \ref{subsection:12leadecg}) application for tablet PC, it acquires raw electrocardiograms data from the compatible devices, which are eventually analysed later by the \textit{"Glasgow"} \cite{glasgow} interpretation algorithm.\\
-After a configuration phase, where the user is asked to provide the endpoint which the waveforms should be uploaded to, it is possible to transfer ECG-SCP (informations about SCP-ECG file format at \ref{subsection:ecgdigitaliation}) files to remote WebServices where Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) is running.
+After a configuration phase, where the user is asked to provide the endpoint which the waveforms should be uploaded to, it is possible to transfer ECG-SCP (informations about SCP-ECG file format at \ref{subsection:ecgdigitaliation}) files via REST WebServices (\ref{paragraph:REST}).
 \paragraph{Web Uploader (and acquiring device)}
+It is a stand-alone client application developed specifically to save, from Cardioline devices, long time registrations, as Holters are, and upload them. Because the length of such documents an upload protocol has been built to ensure all data reach the WebReceiver endpoint, illustrated in fig. \ref{fig:holter_sequence_diagram}.
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{img/holter_sequence_diagram}
+    \caption{Sequence diagram for Holter exams uploading}
+    \label{fig:holter_sequence_diagram}
+\end{figure}
 \paragraph{Browser}
+Any browser application can access web pages provided by EcgWebApp (\ref{paragraph:ecgwebapp}), in this way each tenant user is able to login via his/her own computer without installing any additional software.
+Here the Ecg-Workflow described in \ref{section:ecgworkflow} is implemented and available to different users.
 \paragraph{Holter analysis software (S3 Bucket synchronization)}
 
 \section{Screenshots}
