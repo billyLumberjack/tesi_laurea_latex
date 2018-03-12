@@ -74,11 +74,13 @@ After any kind of client uploaded a new ecg belonging to a particular patient, u
 \label{paragraph:ecgwebreceiver}
 Compared to EcgWebApp (\ref{paragraph:ecgwebapp}) the Ecg WebReceiver component is just a WebService, built with ASP .NET WebApi framework, it serves a REST interface
 
+\clearpage
+
 \subsection{Clients}
-Here is presented a set of client applications for CRUD operations which interact with the previously defined components, EcgWebApp (\ref{paragraph:ecgwebapp}) and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) over the HTTP protocol.
+Here is presented a set of client applications which interact with the previously defined components, EcgWebApp (\ref{paragraph:ecgwebapp}) and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) over the HTTP protocol.
 \paragraph{Touch Ecg}
 Touch Ecg is a Cardioline electrocardiograph 12-lead (more details for 12-lead at \ref{subsection:12leadecg}) application for tablet PC, it acquires raw electrocardiograms data from the compatible devices, which are eventually analysed later by the \textit{"Glasgow"} \cite{glasgow} interpretation algorithm.\\
-After a configuration phase, where the user is asked to provide the endpoint which the waveforms should be uploaded to, it is possible to transfer ECG-SCP (informations about SCP-ECG file format at \ref{subsection:ecgdigitaliation}) files via REST WebServices (\ref{paragraph:REST}).
+After a configuration phase, where the user is asked to provide the endpoint which the waveforms should be uploaded to, it is possible to transfer ECG-SCP (informations about SCP-ECG file format at \ref{subsection:ecgdigitaliation}) files via a REST WebService (\ref{paragraph:REST}).
 \paragraph{Web Uploader (and acquiring device)}
 It is a stand-alone client application developed specifically to save, from Cardioline devices, long time registrations, as Holters are, and upload them. Because the length of such documents an upload protocol has been built to ensure all data reach the WebReceiver endpoint, illustrated in fig. \ref{fig:holter_sequence_diagram}.
 \begin{figure}[h]
@@ -87,9 +89,11 @@ It is a stand-alone client application developed specifically to save, from Card
     \label{fig:holter_sequence_diagram}
 \end{figure}
 \paragraph{Browser}
-Any browser application can access web pages provided by EcgWebApp (\ref{paragraph:ecgwebapp}), in this way each tenant user is able to login via his/her own computer without installing any additional software.
-Here the Ecg-Workflow described in \ref{section:ecgworkflow} is implemented and available to different users.
-\paragraph{Holter analysis software (S3 Bucket synchronization)}
+Any browser application can access web pages provided by EcgWebApp (\ref{paragraph:ecgwebapp}), in this way each tenant user is able to login via his/her own computer without installing any additional software, from anywhere.
+Here the Ecg-Workflow described in \ref{section:ecgworkflow} is implemented and available to different users.\\
+\paragraph{Cube Holter}
+An ad hoc software for in-depth holter exam review, given a folder it looks up for the available exams inside.
+Because Cardioline tools used to be hosted on a LAN (Local Area Network \cite{lan}) it was easier to deliver directly a long-time heart activity recording to the machine which would be used for the analysis, given the architectural change carried out, legacy software as CubeHolter have been provided with a module which creates a virtual storage device synchronized with the related Amazon Simple Storage S3 bucket where exams are exported by WebReceiver (\ref{paragraph:ecgwebreceiver}), hence the tool configured to look for exams in such virtual device, the result is a user transparent synchronization mechanism between local machines and cloud even for large files.
 
 \section{Screenshots}
 \begin{figure}[h]
