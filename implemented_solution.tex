@@ -93,7 +93,7 @@ Any browser application can access web pages provided by EcgWebApp (\ref{paragra
 Here the Ecg-Workflow described in \ref{section:ecgworkflow} is implemented and available to different users.\\
 \paragraph{Cube Holter}
 An ad hoc software for in-depth holter exam review, given a folder it looks up for the available exams inside.
-Because Cardioline tools used to be hosted on a LAN (Local Area Network \cite{lan}) it was easier to deliver directly a long-time heart activity recording to the machine which would be used for the analysis, given the architectural change carried out, legacy software as CubeHolter have been provided with a module which creates a virtual storage device synchronized with the related Amazon Simple Storage S3 bucket where exams are exported by WebReceiver (\ref{paragraph:ecgwebreceiver}), hence the tool configured to look for exams in such virtual device, the result is a user transparent synchronization mechanism between local machines and cloud even for large files.
+Because Cardioline tools used to be hosted on a LAN (Local Area Network \cite{local_area_network}) it was easier to deliver directly a long-time heart activity recording to the machine which would be used for the analysis, given the architectural change carried out, legacy software as CubeHolter have been provided with a module which creates a virtual storage device synchronized with the related Amazon Simple Storage S3 bucket where exams are exported by WebReceiver (\ref{paragraph:ecgwebreceiver}), hence the tool configured to look for exams in such virtual device, the result is a user transparent synchronization mechanism between local machines and cloud even for large files.
 
 \section{Screenshots}
 \begin{figure}[h]
