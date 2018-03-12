@@ -67,12 +67,12 @@ The \textit{view} manages data presentation, serving html pages or json formatte
     \caption{Each application resource has been implemented following this pattern}
     \label{fig:app_resource_pattern}
 \end{figure}
-WebServices included in EcgWebApp are based on the ASP .NET WebApi Framework, a REST interface triggers a specific action on a resource depending on the URL parameters and the HTTP verb used. Basic Authentication is used to provide access control to web resources.\\\\
-After any kind of client uploaded a new ecg belonging to a particular patient, unit and tenant, the [TO FINISH]
-
+WebServices included in EcgWebApp are based on the ASP .NET WebApi Framework, a REST interface triggers a specific action on a resource depending on the URL parameters and the HTTP verb used. Basic Authentication is used to provide access control to web resources.
 \paragraph{Ecg Web Receiver}
 \label{paragraph:ecgwebreceiver}
-Compared to EcgWebApp (\ref{paragraph:ecgwebapp}) the Ecg WebReceiver component is just a WebService, built with ASP .NET WebApi framework, it serves a REST interface
+Similarly to EcgWebApp, (\ref{paragraph:ecgwebapp}) Ecg WebReceiver is an ASP .NET MVC application with a REST webservice module developed with WebApi framework.\\
+To receive large files the client must firstly asks WebReceiver for an upload-session token id, then it starts sending chunks of data until the second last one, each time communicating the uploading session id, finally the client sends the very last chunks and commits uploading (for a diagram see fig.\ref{fig:holter_sequence_diagram}). Each one of the requests made by client is authenticated server-side from a basic-authentication mechanism., the user is then identified and the exam loaded to the associated bucket on Amazon Simple Storage Service (S3).
+The system admin is allowed to login and perform CRUD on users and buckets resources from a web based user interface (screenshot at fig. \ref{fig:webreceiver_admin_screenshot})
 
 \clearpage
 
@@ -81,7 +81,7 @@ Here is presented a set of client applications which interact with the previousl
 \paragraph{Touch Ecg}
 Touch Ecg is a Cardioline electrocardiograph 12-lead (more details for 12-lead at \ref{subsection:12leadecg}) application for tablet PC, it acquires raw electrocardiograms data from the compatible devices, which are eventually analysed later by the \textit{"Glasgow"} \cite{glasgow} interpretation algorithm.\\
 After a configuration phase, where the user is asked to provide the endpoint which the waveforms should be uploaded to, it is possible to transfer ECG-SCP (informations about SCP-ECG file format at \ref{subsection:ecgdigitaliation}) files via a REST WebService (\ref{paragraph:REST}).
-\paragraph{Web Uploader (and acquiring device)}
+\paragraph{Web Uploader}
 It is a stand-alone client application developed specifically to save, from Cardioline devices, long time registrations, as Holters are, and upload them. Because the length of such documents an upload protocol has been built to ensure all data reach the WebReceiver endpoint, illustrated in fig. \ref{fig:holter_sequence_diagram}.
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{img/holter_sequence_diagram}
@@ -96,6 +96,13 @@ An ad hoc software for in-depth holter exam review, given a folder it looks up f
 Because Cardioline tools used to be hosted on a LAN it was easier to deliver directly a long-time heart activity recording to the machine which would be used for the analysis, given the architectural change carried out, legacy software as CubeHolter have been provided with a module which creates a virtual storage device synchronized with the related Amazon Simple Storage S3 bucket where exams are exported by WebReceiver (\ref{paragraph:ecgwebreceiver}), hence the tool configured to look for exams in such virtual device, the result is a user transparent synchronization mechanism between local machines and cloud even for large files.
 
 \section{Screenshots}
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{img/webreceiver_admin_screenshot}
+    \caption{Admin user interface for buckets and users management}
+    \label{fig:webreceiver_admin_screenshot}
+\end{figure}
+
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{img/todo_anamnesi}
     \caption{User interface showing anamnesis needed}
