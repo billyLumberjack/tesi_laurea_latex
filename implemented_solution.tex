@@ -1,7 +1,8 @@
 \chapter{Implemented Solution}
 
 \section{Amazon Web Services}
-
+The system which came out is strongly based on Amazon Web Services, from web applications and web services hosting to static file storage and database management, from serverless microservices to email notification system, everything is provided by Amazon Cloud.\\
+Below are presented the system architecture and details of the realized prototype.
 \subsection{Architecture}
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{img/architecture}
@@ -35,7 +36,7 @@ Once the history of a \textit{pending} exam has been supplied (screenshot at fig
 Subsequently to an expert review and confirmation a desired feature was to send documents over internet to specific Electronic Health Repository (EHR \ref{subsection:electronic_health_record}).\\
 In order to exchange data with EHR, it is necessary to convey on a single "big" standard for each Electronic Medical Record (EMR \ref{subsection:electronic_health_record}). The italian EHR named, Fascicolo Sanitario Elettronico (FSE), requires each region to adopt HL7 Clinical Document Architecture (CDA R2) for this kind of purpose, in its own implementation.
 
-\subsection{CDA document}
+\subsection{Clinical Document Architecture documents}
 Hl7 Clinical Document Architecture R2 is a document markup standard \cite{hl7Cda$2$}, based on XML, which aim is to encode clinical observations and services keeping the exchange purpose.\\ \\
 The set of provided informations comprehends text, images, sounds and multimedia content.
 Everything is wrapped by a \textit{\textlangle{}ClinicalDocument\textrangle{}} element, which is divided in sections too: a \textit{header} and a \textit{body}.
@@ -46,7 +47,7 @@ In specific Cardioline scenario, heart rate activities and cardiologist conclusi
 A .NET based plugin for Cardioline softwares, called \textit{CdaHelper} has been realized: given a reviewed cardiologic exam as an SCP file it outputs the associated CDA R2.\\
 Starting from a skeleton CDA, where common values for general electrocardiograms are, and a dictionary data structure, holding specific exam related data, the final CDA document is built and ready for the EHR.\\
 To keep this mechanism as elastic and maintainable as possible, every piece of information injected follows a predefined rule inside a configuration file.\\ \\
-An example is displayed: the starting SCP in fig. \ref{fig:scp_view} and the resulting Clinical Document Architecture R2 document in snippet \ref{lst:ref}. It is important to note that even if the wevaforms raw data are lost because the conversion, the PDF representation of such information is still encapsulates inside \textit{\textlangle{}nonXMLBody\textrangle{}} tag as a \textit{base64} string.
+An example is displayed: the starting SCP in fig. \ref{fig:scp_view} and the resulting Clinical Document Architecture R2 document in snippet \ref{lst:ref}. It is important to note that even if the waveforms raw data are lost because the conversion, the PDF representation is still encapsulates inside \textit{\textlangle{}nonXMLBody\textrangle{}} tag as a \textit{base64} string.
 
 \section{Interoperability related architecture components}
 The biggest contribution has been provided to the architecture components which interact with an external service. As it is possible to observe in figure \ref{fig:architecture} they are mainly two, EcgWebApp (\ref{paragraph:ecgwebapp}) for resting and cardiac stress test and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) for Holter methodology.
