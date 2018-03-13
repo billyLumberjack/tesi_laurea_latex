@@ -77,11 +77,106 @@ Currently these are ECG-SCP tags that have been mapped to the CDA ones:
     \item DOC-PDF
 \end{itemize}
 
-\begin{lstlisting}
-<balise1> 1 </balise1>
-<balise2> 2 </balise2>
-\end{lstlisting}
 \end{scriptsize}
+
+\begin{lstlisting}[caption=Some caption,label=lst:ref]
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="CDAit.xsl"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+  <realmCode code="IT" />
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+  <templateId root="2.16.840.1.113883.2.9.10.1.1" extension="1.1" />
+  <id root="oid_struttura.7" extension="3.4.5.6.7.1" assigningAuthorityName="fake-authority" />
+  <!--HL7 Italia richiede che l’attributo root sia di tipo OID, e che non sia usato per identificare “di per sé” l’istanza del documento, ma l’organizzazione che assicura l’univocità dell’OID.-->
+  <code code="11502-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+  <title>File CDAr2 from Cardioline Spa</title>
+  <effectiveTime value="20171124105821" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normale" />
+  <languageCode code="it-IT" />
+  <versionNumber value="1" />
+  <recordTarget>
+    <patientRole>
+      <id extension="00000000018" root="2.16.840.1.113883.2.9.4.3.2" assigningAuthorityName="Ministero Economia e Finanze" />
+      <patient classCode="PSN" determinerCode="INSTANCE">
+        <name>
+          <given>Stefania</given>
+          <family>Maggi</family>
+          <suffix>miss.</suffix>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" codeSystemVersion="1.0" displayName="F" />
+        <birthTime value="" />
+        <raceCode code="U" codeSystem="2.16.840.1.113883.5.104" displayName="-" />
+      </patient>
+      <providerOrganization>
+        <id root="2.16.840.1.113883.2.9.4.1.1" extension="azienda" />
+        <name />
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <time value="20180308120513" />
+    <assignedAuthor>
+      <!--CODICE FISCALE-->
+      <id root="2.16.840.1.113883.2.9.4.3.2" extension="$CODFISCASAUT$" assigningAuthorityName="Ministero Economia e Finanze" />
+      <telecom>
+      </telecom>
+      <!--EMAIL-->
+      <telecom>
+      </telecom>
+      <!--PEC-->
+      <telecom>
+      </telecom>
+      <!--TELEFONO-->
+      <assignedPerson>
+        <name>
+          <prefix>
+          </prefix>
+          <family>
+          </family>
+          <given>Stefania Marchesi</given>
+        </name>
+      </assignedPerson>
+    </assignedAuthor>
+  </author>
+  <custodian typeCode="CST">
+    <!--Il custodian è l’organizzazione responsabile della conservazione dell’originale del 1350 documento, al momento della generazione, esso registra usualmentel’identificativo della Struttura Sanitaria a cui appartiene l’author. Normalmente identifica la struttura presso la quale è generato il documento (cioè la struttura in cui ha luogo il contatto sanitario del paziente), il custodian potrà 1355 essere anche la stessa organizzazione relativa all’AREA-DOMINIO, utilizzando un modello centralizzato. ClinicalDocument.custodian secondo le specifiche di CDA R2 è un elemento obbligatorio ed è unico.-->
+    <assignedCustodian classCode="ASSIGNED">
+      <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
+        <id root="oid-organizzazioni" extension="id-custodian" />
+        <name>nome custodian organizzazione</name>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <!--Sezione per documentare la richiesta di prestazione -->
+  <inFulfillmentOf>
+    <order>
+      <!-- ID del documento relativo alla richiesta (ID-Prestazione-GLCDA) -->
+      <id root="1.11.111.1.111111.1.1" extension="id doc request" assigningAuthorityName="authority request" />
+      <priorityCode code="R" codeSystem="2.16.840.1.113883.5.7" codeSystemName="HL7 ActPriority">
+      </priorityCode>
+    </order>
+  </inFulfillmentOf>
+  <!--
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <code code="" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>L’elemento section/text rappresenta il blocco narrativo e contiene le informazioni human- readable della sottosezione del Referto di Medicina di Laboratorio</title>
+          <text>$CONCLUSIONI$</text>
+          </section>
+      </component>
+  </structuredBody>
+</component>
+-->
+  <component>
+    <nonXMLBody>
+      <text mediaType="application/pdf" representation="B64">JVBER [...] KJSVFT0YK</text>
+    </nonXMLBody>
+  </component>
+</ClinicalDocument>
+\end{lstlisting}
+Refer to Listing~\ref{lst:ref}.
 
 \section{Interoperability related architecture components}
 The biggest contribution has been provided to the architecture components which interact with an external service. As it is possible to observe in figure \ref{fig:architecture} they are mainly two, EcgWebApp (\ref{paragraph:ecgwebapp}) for resting and cardiac stress test and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) for Holter methodology.
