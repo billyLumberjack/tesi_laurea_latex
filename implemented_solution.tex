@@ -43,13 +43,14 @@ While \textit{body} contains the actual exam informations in a structured or uns
 In specific Cardioline scenario, heart rate activities and cardiologist conclusions are organized inside a PDF file and encapsulated into the CDA document as an unstructured blob contained by the \textit{body} tag.
 
 \subsection{CDA from ECG-SCP builder module}
-A .NET based plugin for Cardioline softwares, called \textit{CdaHelper} has been brought out: given a reviewed cardiologic exam as an SCP file it outputs the associated CDA R2.\\
-Starting from a minimised CDA, where common values for general electrocardiograms are already stored in, and a dictionary data structure, holding specific exam releted data are, the final CDA document is built and ready for the EHR.
-To keep this mechanism as elestic and maintainable as possible, every piece of information injected follows a predefined rule inside a configuration file.\\
+A .NET based plugin for Cardioline softwares, called \textit{CdaHelper} has been realized: given a reviewed cardiologic exam as an SCP file it outputs the associated CDA R2.\\
+Starting from a skeleton CDA, where common values for general electrocardiograms are already stored in, and a dictionary data structure, holding specific exam related data are, the final CDA document is built and ready for the EHR.\\
+To keep this mechanism as elastic and maintainable as possible, every piece of information injected follows a predefined rule inside a configuration file.\\
 Currently these are ECG-SCP tags that have been mapped to the CDA ones:
-\begin{scriptsize}
+%\begin{scriptsize}
 
 \begin{itemize}
+    \setlength\itemsep{5pt}
     \item OID
     \item IDDOC
     \item AUTHORITY
@@ -77,7 +78,7 @@ Currently these are ECG-SCP tags that have been mapped to the CDA ones:
     \item DOC-PDF
 \end{itemize}
 
-\end{scriptsize}
+%\end{scriptsize}
 
 \begin{lstlisting}[caption=Some caption,label=lst:ref]
 <?xml version="1.0"?>
