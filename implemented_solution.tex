@@ -38,7 +38,7 @@ In order to exchange data with EHR, it is necessary to convey on a single "big" 
 \subsection{CDA document}
 Hl7 Clinical Document Architecture R2 is a document markup standard \cite{hl7Cda$2$}, based on XML, which aim is to encode clinical observations and services with the exchange purpose.\\
 The set of provided informations comprehends text, images, sounds and multimedia content.
-Everything is wrapped by a \textit{$\langleClinicalDocument\rangle$} element, which is divided in sections too: a \textit{header} and a \textit{body}.
+Everything is wrapped by a \textit{$\langle ClinicalDocument \rangle$} element, which is divided in sections too: a \textit{header} and a \textit{body}.
 While \textit{body} contains the actual exam informations in a structured or unstructured way, in \textit{header} lies every detail about patient, healthcare providers and codes for exam or stakeholder identification.\\ \\
 In specific Cardioline scenario, heart rate activities and cardiologist conclusions are organized inside a PDF file and encapsulated into the CDA document as an unstructured blob contained by the \textit{body} tag.
 \subsection{CDA from ECG-SCP builder module}
