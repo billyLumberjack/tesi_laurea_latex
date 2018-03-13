@@ -47,6 +47,8 @@ A .NET based plugin for Cardioline softwares, called \textit{CdaHelper} has been
 Starting from a minimised CDA, where common values for general electrocardiograms are already stored in, and a dictionary data structure, holding specific exam releted data are, the final CDA document is built and ready for the EHR.
 To keep this mechanism as elestic and maintainable as possible, every piece of information injected follows a predefined rule inside a configuration file.\\
 Currently these are ECG-SCP tags that have been mapped to the CDA ones:
+\begin{scriptsize}
+
 \begin{itemize}
     \item OID
     \item IDDOC
@@ -80,6 +82,7 @@ Currently these are ECG-SCP tags that have been mapped to the CDA ones:
 <balise2> 2 </balise2>
 \end{lstlisting}
 Refer to Listing~\ref{lst:ref}.
+\end{scriptsize}
 
 \section{Interoperability related architecture components}
 The biggest contribution has been provided to the architecture components which interact with an external service. As it is possible to observe in figure \ref{fig:architecture} they are mainly two, EcgWebApp (\ref{paragraph:ecgwebapp}) for resting and cardiac stress test and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) for Holter methodology.
