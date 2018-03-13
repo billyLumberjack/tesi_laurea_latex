@@ -13,7 +13,7 @@ As shown in picture \ref{fig:architecture}, everything but the Amazon Simple Ema
 The region is divided into availability zones connected each other with low-latency links, to handle potential instance failures by replacing them with the standby ones located in a different availability zone.\\
 EB handles the WebServer instances: one for the EcgWebApp, more details in section \ref{paragraph:ecgwebapp} and the other one for Ecg WebReceiver,section \ref{paragraph:ecgwebreceiver}. The interaction is then allowed to authenticated users bounded to their capabilities and role.\\
 The persistency is achieved by a Relational Database Service (RDS) running Amazon Aurora DB, a compatible MySql Database organized with a master write replica and several read replicas.
-Furthermore, RDS provides a standby and synchronous Database, hosted in another availability zone, that is ready to become the new master in case of failure of the current master.\\
+Furthermore, RDS provides a standby and synchronous Database, hosted in another availability zone, that is ready to become the new master in case of failure of the current one.\\
 All the assets and static files are read and written from/to AWS S3 relative bucket.\\
 The notification system is triggered by DB events and carried on by AWS Lambda functions using Amazon Simple Email Service (SES) as delivery service to final users. This service is not available in the Frankfurt region, hence the Ireland region was chosen.
 
@@ -33,9 +33,14 @@ Once the history of a \textit{pending} exam has been supplied (screenshot at fig
 \section{From ECG-SCP to EHR compliant document}
 \label{section:from_ECG_SCP_to_EHR_compliant_document}
 Subsequently to an expert review and confirmation a desired feature was to send documents over internet to specific Electronic Health Repository (EHR \ref{subsection:electronic_health_record}).\\
-In order to exchange data with EHR, it is necessary to convey on a single big standard for each Electronic Medical Record (EMR \ref{subsection:electronic_health_record}). The italian EHR named, Fascicolo Sanitario Elettronico (FSE) adopted HL7 Clinical Document Architecture (CDA R2) for this kind of purpose.
+In order to exchange data with EHR, it is necessary to convey on a single "big" standard for each Electronic Medical Record (EMR \ref{subsection:electronic_health_record}). The italian EHR named, Fascicolo Sanitario Elettronico (FSE), requires each region to adopt HL7 Clinical Document Architecture (CDA R2) for this kind of purpose, in its own implementation.
+
 \subsection{CDA document}
-Hl7 Clinical Document Architecture R2 is a document markup standard \cite{hl7Cda$2$}
+Hl7 Clinical Document Architecture R2 is a document markup standard \cite{hl7Cda$2$}, based on XML, which aim is to encode clinical observation and services in favour of exchange.
+The set of provided informations comprehends text, images, sounds and multimedia content.
+The whole document is contained in a main \textit{<ClinicalDocument>} element, which is divided into sections too: a \textit{header} and a \textit{body}.
+While \textit{body} contains the actual exam informations in a structured or unstructured way, in \textit{header} lies every detail about patient, healthcare providers and codes for exam or stakeholder identification.
+In the specific Cardioline scenario, heart rate activities and cardiologist conclusions are organized inside a PDF file and encapsulated into the CDA document as an unstructured blob inside the \textit{body} tag.
 \subsection{CDA from ECG-SCP builder module}
 \paragraph{Resting}
 \label{paragraph:Resting}
@@ -89,7 +94,7 @@ Here is presented a set of client applications which interact with the previousl
 Touch Ecg is a Cardioline electrocardiograph 12-lead (more details for 12-lead at \ref{subsection:12leadecg}) application for tablet PC: it acquires raw electrocardiograms data from the compatible devices, which are eventually analysed later by the \textit{"Glasgow"} \cite{glasgow} interpretation algorithm.\\
 After a configuration phase, where the user is asked to provide the endpoint which the waveforms should be uploaded to, it is possible to transfer ECG-SCP (informations about SCP-ECG file format at \ref{subsection:ecgdigitaliation}) files via a REST WebService (\ref{paragraph:REST}).
 \paragraph{Web Uploader}
-It is a stand-alone client application developed specifically to save, from Cardioline devices, long time registrations, as Holters are, and upload them. Because of such document's legth an upload protocol has been built to ensure all data will reach the WebReceiver endpoint, illustrated in fig. \ref{fig:holter_sequence_diagram}.
+It is a stand-alone client application developed specifically to save, from Cardioline devices, long time registrations, as Holters are, and upload them. Because of such document's length an upload protocol has been built to ensure all data will reach the WebReceiver endpoint, illustrated in fig. \ref{fig:holter_sequence_diagram}.
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{img/holter_sequence_diagram}
     \caption{Sequence diagram for Holter exams uploading}
