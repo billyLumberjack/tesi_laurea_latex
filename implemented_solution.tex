@@ -44,13 +44,13 @@ In specific Cardioline scenario, heart rate activities and cardiologist conclusi
 
 \subsection{CDA from ECG-SCP builder module}
 A .NET based plugin for Cardioline softwares, called \textit{CdaHelper} has been realized: given a reviewed cardiologic exam as an SCP file it outputs the associated CDA R2.\\
-Starting from a skeleton CDA, where common values for general electrocardiograms are already stored in, and a dictionary data structure, holding specific exam related data are, the final CDA document is built and ready for the EHR.\\
+Starting from a skeleton CDA, where common values for general electrocardiograms are, and a dictionary data structure, holding specific exam related data, the final CDA document is built and ready for the EHR.\\
 To keep this mechanism as elastic and maintainable as possible, every piece of information injected follows a predefined rule inside a configuration file.\\ \\
-An example is displayed: the starting SCP in fig. \ref{fig:scp_view} and the resulting Clinical Document Architecture R2 document in \ref{lst:ref}, it is important to note that even if the wevaforms raw data have been lost, the PDF representation of such information is still encapsulates inside \textit{\textlangle{}nonXMLBody\textrangle{}} tag as a \textit{base64} string.
+An example is displayed: the starting SCP in fig. \ref{fig:scp_view} and the resulting Clinical Document Architecture R2 document in snippet \ref{lst:ref}. It is important to note that even if the wevaforms raw data are lost because the conversion, the PDF representation of such information is still encapsulates inside \textit{\textlangle{}nonXMLBody\textrangle{}} tag as a \textit{base64} string.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth,height=15cm,keepaspectratio]{img/scp_view}
+    \includegraphics[width=\textwidth,height=10cm,keepaspectratio]{img/scp_view}
     \caption{ECG-SCP starting point}
     \label{fig:scp_view}
 \end{figure}
