@@ -36,18 +36,44 @@ Subsequently to an expert review and confirmation a desired feature was to send 
 In order to exchange data with EHR, it is necessary to convey on a single "big" standard for each Electronic Medical Record (EMR \ref{subsection:electronic_health_record}). The italian EHR named, Fascicolo Sanitario Elettronico (FSE), requires each region to adopt HL7 Clinical Document Architecture (CDA R2) for this kind of purpose, in its own implementation.
 
 \subsection{CDA document}
-Hl7 Clinical Document Architecture R2 is a document markup standard \cite{hl7Cda$2$}, based on XML, which aim is to encode clinical observations and services with the exchange purpose.\\
+Hl7 Clinical Document Architecture R2 is a document markup standard \cite{hl7Cda$2$}, based on XML, which aim is to encode clinical observations and services keeping the exchange purpose.\\ \\
 The set of provided informations comprehends text, images, sounds and multimedia content.
-Everything is wrapped by a \textit{$\langle ClinicalDocument \rangle$} element, which is divided in sections too: a \textit{header} and a \textit{body}.
+Everything is wrapped by a \textit{\textlangle{}ClinicalDocument\textrangle{}} element, which is divided in sections too: a \textit{header} and a \textit{body}.
 While \textit{body} contains the actual exam informations in a structured or unstructured way, in \textit{header} lies every detail about patient, healthcare providers and codes for exam or stakeholder identification.\\ \\
 In specific Cardioline scenario, heart rate activities and cardiologist conclusions are organized inside a PDF file and encapsulated into the CDA document as an unstructured blob contained by the \textit{body} tag.
+
 \subsection{CDA from ECG-SCP builder module}
-\paragraph{Resting}
-\label{paragraph:Resting}
-\paragraph{Cardiac stress test}
-\label{paragraph:Cardiac stress test}
-\paragraph{Holter}
-\label{paragraph:Holter}
+A .NET based plugin for Cardioline softwares, called \textit{CdaHelper} has been brought out: given a reviewed cardiologic exam as an SCP file it outputs the associated CDA R2.\\
+Starting from a minimised CDA, where common values for general electrocardiograms are already stored in, and a dictionary data structure, holding specific exam releted data are, the final CDA document is built and ready for the EHR.
+To keep this mechanism as elestic and maintainable as possible, every piece of information injected follows a predefined rule inside a configuration file.\\
+Currently these are ECG-SCP tags that have been mapped to the CDA ones:
+\begin{itemize}
+    \item OID
+    \item IDDOC
+    \item AUTHORITY
+    \item EFFECTIVE-TIME
+    \item VERSION
+    \item NAME
+    \item FAMILY
+    \item SUFFIX
+    \item GENDER-CODE
+    \item GENDER-NAME
+    \item BIRTH-TIME
+    \item RACE-CODE
+    \item RACE-NAME
+    \item AZIENDA
+    \item CURRENT-TIME
+    \item CODICE-FISCALE
+    \item PREFASAUT
+    \item COGNASAUT
+    \item NOMEASAUT
+    \item OID-ORGANIZZAZIONI
+    \item ID-CUSTODIAN
+    \item NAMECUSTODIANORGANIZATION
+    \item IDDOCREQ
+    \item ASSIGNING-AUTHORITY
+    \item DOC-PDF
+\end{itemize}
 
 \section{Interoperability related architecture components}
 The biggest contribution has been provided to the architecture components which interact with an external service. As it is possible to observe in figure \ref{fig:architecture} they are mainly two, EcgWebApp (\ref{paragraph:ecgwebapp}) for resting and cardiac stress test and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) for Holter methodology.
