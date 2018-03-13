@@ -1,15 +1,15 @@
 \chapter{Implemented Solution}
 
 \section{Amazon Web Services}
-The system which came out is strongly based on Amazon Web Services, from web applications and web services hosting to static file storage and database management, from serverless microservices to email notification system, everything is provided by Amazon Cloud.\\
+The system which came out is strongly based on Amazon Web Services: from web applications and web services hosting to static file storage and database management, from serverless microservices to email notification system, everything is provided by Amazon cloud resources.\\
 Below are presented the system architecture and details of the realized prototype.
 \subsection{Architecture}
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{img/architecture}
+    \includegraphics[width=\textwidth,keepaspectratio]{img/architecture}
     \caption{Architecture Scheme}
     \label{fig:architecture}
 \end{figure}
-Since Amazon Elastic Beanstalk (EB) has been used as the core component of the system, it has been possible to use an Infrastructure as a Service (IaaS \ref{paragraph:Iaas}) grade of customization, with an easier configuration and building phase as if the system was Platform as a Service (PaaS \ref{paragraph:Paas}) instead.\\
+Since Amazon Elastic Beanstalk (EB defined in \ref{paragraph:amazon_elastic_beanstalk}) has been used as the core component of the system, it has been possible to use an Infrastructure as a Service (IaaS \ref{paragraph:Iaas}) grade of customization, with an easier configuration and building phase as if the system was Platform as a Service (PaaS \ref{paragraph:Paas}) instead.\\
 As shown in picture \ref{fig:architecture}, everything but the Amazon Simple Email Service (SES \cite{AmazonSes}) service is hosted in the eu-central-1 region in Frankfurt to reduce latency, minimize costs and keep healthcare data in an European law venue, as in production would be.
 The region is divided into availability zones connected each other with low-latency links, to handle potential instance failures by replacing them with the standby ones located in a different availability zone.\\
 EB handles the WebServer instances: one for the EcgWebApp, more details in section \ref{paragraph:ecgwebapp} and the other one for Ecg WebReceiver,section \ref{paragraph:ecgwebreceiver}. The interaction is then allowed to authenticated users bounded to their capabilities and role.\\
@@ -20,12 +20,12 @@ The notification system is triggered by DB events and carried on by AWS Lambda f
 
 \section{Ecg Workflow}
 \label{section:ecgworkflow}
-Resting Electrocardiogram (\ref{paragraph:Resting}) are uploaded from different device types such as mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST interface (details about REpresentational State Transter\ref{paragraph:REST}). The exam is stored in a \textit{pending} state and every associated physician notified for the anamnesis provisioning.
+Resting Electrocardiogram (digital electrocardiogram definition \ref{subsection:ecgdigitaliation}) are uploaded from different device types such as mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST interface (details about REpresentational State Transter\ref{paragraph:REST}). The exam is stored in a \textit{pending} state and every associated physician notified for the anamnesis provisioning.
 The user interface for a physician with anamnesis providing rights logged in is displayed in fig.\ref{fig:todo_anamnesi}.
 Once the history of a \textit{pending} exam has been supplied (screenshot at fig.\ref{fig:aggiunta_anamnesi}) it passes to a \textit{ready} state. At this point every associated doctor with review role and permission, usually a cardiologist, is notified and allowed to write its own conclusion, as showed in figure \ref{fig:aggiunta_anamnesi}, and eventually ask for a second opinion from another expert. The exam state is finally set to \textit{confirmed} and the patient doctor notified.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=6cm]{img/ECGstatechart}
+    \includegraphics[width=6cm,keepaspectratio]{img/ECGstatechart}
     \caption{Electrocardiogram State Chart}
     \label{fig:ECGstatechart}
 \end{figure}
@@ -36,7 +36,8 @@ Once the history of a \textit{pending} exam has been supplied (screenshot at fig
 Subsequently to an expert review and confirmation a desired feature was to send documents over internet to specific Electronic Health Repository (EHR \ref{subsection:electronic_health_record}).\\
 In order to exchange data with EHR, it is necessary to convey on a single "big" standard for each Electronic Medical Record (EMR \ref{subsection:electronic_health_record}). The italian EHR named, Fascicolo Sanitario Elettronico (FSE), requires each region to adopt HL7 Clinical Document Architecture (CDA R2) for this kind of purpose, in its own implementation.
 
-\subsection{Clinical Document Architecture documents}
+\subsection{Clinical Document Architecture R2}
+\label{subsection:clinical_document_architecture}
 Hl7 Clinical Document Architecture R2 is a document markup standard \cite{hl7Cda$2$}, based on XML, which aim is to encode clinical observations and services keeping the exchange purpose.\\ \\
 The set of provided informations comprehends text, images, sounds and multimedia content.
 Everything is wrapped by a \textit{\textlangle{}ClinicalDocument\textrangle{}} element, which is divided in sections too: a \textit{header} and a \textit{body}.
@@ -74,19 +75,17 @@ The MVC \textit{(Model View Controller)} paradigm allows to isolate the domain s
 In this specific context the \textit{model} includes objects as exams and patients and their relations, which are mapped to MySql Database Entities by Entity Framework (EF), an open source object-relational-mapping tool (ORM) developed by Microsoft, in order to work without taking care of the underlying database tables and columns where data are actually stored. Indeed developers deal with an higher level of abstraction \cite{wikipedia_ef}.\\
 The \textit{view} manages data presentation, serving html pages or json formatted data, as show in figure \ref{fig:app_resource_pattern}.\\
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{img/app_resource_pattern}
+    \includegraphics[width=\textwidth,keepaspectratio]{img/app_resource_pattern}
     \caption{Each application resource has been implemented following this pattern}
     \label{fig:app_resource_pattern}
 \end{figure}
 WebServices included in EcgWebApp are based on the ASP .NET WebApi Framework: a REST interface triggers a specific action on a resource depending on the URL parameters and the HTTP verb used. Basic Authentication is used to provide access control to web resources.\\ \\
-A specific module has been developed to prepare reviewed electrocardiograms for Electronic Health Record. Any time a user with review priviledges confirm his/her analysis, a italian EHR (aka FSE) compliant CDA document (details at \ref{section:interoperability_of_digital_electrocardiograms_data}) is then built and eventually submitted. (EHR - Electronic Healt Record and FSE - Fascicolo Sanitario Elettronico were defined in \ref{subsection:electronic_health_record})
+A specific module has been developed to prepare reviewed electrocardiograms for Electronic Health Record. Any time a user with review priviledges confirm his/her analysis, a italian EHR (aka FSE) compliant CDA document (details at \ref{subsection:clinical_document_architecture}) is then built and eventually submitted. (EHR - Electronic Healt Record and FSE - Fascicolo Sanitario Elettronico were defined in \ref{subsection:electronic_health_record})
 \paragraph{Ecg Web Receiver}
 \label{paragraph:ecgwebreceiver}
 Similarly to EcgWebApp, (\ref{paragraph:ecgwebapp}) Ecg WebReceiver is an ASP .NET MVC application with a REST webservice module developed with WebApi framework.\\
 To receive large files the client must first ask WebReceiver for an upload-session token id, then it starts sending chunks of data until the second last one, each time communicating the uploading session id. Finally the client sends the very last chunk and commits uploading (for a diagram see fig.\ref{fig:holter_sequence_diagram}). Each requests made by client is authenticated server-side from a basic-authentication mechanism. The user is then identified and the exam loaded to the associated bucket on Amazon Simple Storage Service (S3).
 The system admin is allowed to login and perform CRUD on users and buckets resources from a web based user interface (screenshot at fig. \ref{fig:webreceiver_admin_screenshot})
-
-\clearpage
 
 \subsection{Clients}
 Here is presented a set of client applications which interact with the previously defined components, EcgWebApp (\ref{paragraph:ecgwebapp}) and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) over the HTTP protocol.
@@ -96,7 +95,7 @@ After a configuration phase, where the user is asked to provide the endpoint whi
 \paragraph{Web Uploader}
 It is a stand-alone client application developed specifically to save, from Cardioline devices, long time registrations, as Holters are, and upload them. Because of such document's length an upload protocol has been built to ensure all data will reach the WebReceiver endpoint, illustrated in fig. \ref{fig:holter_sequence_diagram}.
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{img/holter_sequence_diagram}
+    \includegraphics[width=\textwidth,keepaspectratio]{img/holter_sequence_diagram}
     \caption{Sequence diagram for Holter exams uploading}
     \label{fig:holter_sequence_diagram}
 \end{figure}
@@ -185,25 +184,25 @@ Because Cardioline tools used to be hosted on a LAN it was easier to deliver dir
 \end{figure}
 
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{img/webreceiver_admin_screenshot}
+    \includegraphics[width=\textwidth,keepaspectratio]{img/webreceiver_admin_screenshot}
     \caption{Admin user interface for buckets and users management}
     \label{fig:webreceiver_admin_screenshot}
 \end{figure}
 
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{img/todo_anamnesi}
+    \includegraphics[width=\textwidth,keepaspectratio]{img/todo_anamnesi}
     \caption{User interface showing anamnesis needed}
     \label{fig:todo_anamnesi}
 \end{figure}
 
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{img/aggiunta_anamnesi}
+    \includegraphics[width=\textwidth,keepaspectratio]{img/aggiunta_anamnesi}
     \caption{User interface showing anamnesis provisioning}
     \label{fig:aggiunta_anamnesi}
 \end{figure}
 
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{img/refertazione_esame}
+    \includegraphics[width=\textwidth,keepaspectratio]{img/refertazione_esame}
     \caption{Conclusion provisioning user interface}
     \label{fig:refertazione_esame}
 \end{figure}
