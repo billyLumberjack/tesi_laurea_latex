@@ -19,35 +19,36 @@ To carry out the target, these were the main challenges:
 \end{itemize}
 The resulting prototype had to be sufficiently flexible and configurable to be adapted over several environments.
 
-\paragraph{Functional and Non functional requirements}
-As reported above, Cardioline together with FBK came up with additional features which the current version of their system does not support.
-The following are the functional requirements.
-\subparagraph{Anamnesis}
-The future management system should let the single tenant decide wether or not to allow cardiologist submit their report even if the patient doctor didn't upload the exam with an anamnesis description. This feature is in particular important for pharmacies, because their technicians are not qualified to insert patient anamnesis. In this way every Cardioline customer (which correspond to hospital, clinic, etc..) can exert its own policy about anamnesis and reviews.
-\subparagraph{Notifications}
-Currently Cardioline web application software does not provide a notification features, mainly because it is hosted on LANs.
-Because the architectural change enabled ubiquitus examination and analysis, it also imposes the development of a reliable notification system. Once a new electrocardiogram is submitted, if the system is in this way configured, a notification is sent to users which have anamnesi providing rights on it. If the option is not activated by the tenant user with exam review proviledges are notified.\\
-In the case an anamnesis is submitted, the associated physician are notified for a new available ECG.\\
-Finally when an ECG review is submitted by physician, the user who is taking care of the associated patient receives a notification of the process completion.
+\paragraph{Functional and Non functional requirements} As reported above, Cardioline together with FBK came up with additional features which the current version of their system does not support.\\The following are the functional requirements.
+\subparagraph{Anamnesis}The future management system should let the single tenant decide wether or not to allow cardiologist submit their report even if the patient doctor didn't upload the exam with an anamnesis description. This feature is in particular important for pharmacies, because their technicians are not qualified to insert patient anamnesis. In this way every Cardioline customer (which correspond to hospital, clinic, etc..) can exert its own policy about anamnesis and reviews.
+\subparagraph{Notifications}Currently Cardioline web application software does not provide a notification features, mainly because it is hosted on LANs.\\Because the architectural change enabled ubiquitus examination and analysis, it also imposes the development of a reliable notification system. Once a new electrocardiogram is submitted, if the system is in this way configured, a notification is sent to users which have anamnesi providing rights on it. If the option is not activated by the tenant user with exam review proviledges are notified.\\In the case an anamnesis is submitted, the associated physician are notified for a new available ECG.\\Finally when an ECG review is submitted by physician, the user who is taking care of the associated patient receives a notification of the process completion.
+
+Non-functional requirements are mainly necessary because of the cloud environment introduction and does not affect the system behaviour already implemented.
+
+\subparagraph{Legacy software constraints}
+Reuse previously implemented software modules and avoid prototype development from scratch.
+\subparagraph{Scalability}
+Dynamically allocate resources to satisfy system traffic and computational load even in case it decreses or increase. The aim to keep stable the level of performance and efficiency adapting to the current workload.\\
+\subparagraph{Multiple tenants}
+Because of application logic and security issues each tenant related data have to be stored in several databases. In this way each tenant can only access its own data.
+\subparagraph{Availability}
+Build a web application which probability of downtime and single point of failures are minimized. Also hardware and network failures have to be prevented.
+
+\subparagraph{Legal constraints}
+Store data on remote environment rather than a local one implies a different legislation to be applied. Even if EcgWebApp was already compliant to the European laws it had to be reviewed, in particular the database had to be encrypted and modified in order to separate user identifying data and their associated exams.
+
+
 
 \paragraph{Proposed solutions}
-
-
-\section{Provider choice}
-It has been decided to face the computing and network load problem using Computing Cloud technologies, since they let the developer choose the control degree and customization over the system and how to structure the network.
-In particular Cloud Computing providers offers this kinds of services:
+Several solutions were elaborated and proposed to the company, each of them respects the above requirements.\\
+Amazon was choosen as service provider because ot not only offers storage servers located in Europe but they are also CISPE certificated: they ensure data be processed and saved into European Union lying servers.\\
+Farther the provider was interesting for a particular service they offer named Elastic Beanstalk \label(definition:beanstalk): it allows to manage web and application service. Handles dynamically the computing and network resources allocated to each application, indeed it provides the admin with a real-time monitoring of the applications state. Everything is carried on by Beanstalk leaving the possibility to go deeply and handle directly AWS resources as if the system were PaaS instead.\\
+The entire cost is computed by summing up just the usage of AWS resources, meaning that Beanstalk does not provide additional costs to manage automatically the underlying IaaS.
+In this phase was also took into account a third party service called \textit{chino.io} so to outsource the storage of sensible data. Chino was granted to be laws compliant in term of privacy, security and easy to integrate by adding an external REST adapter toward their service.
+Here are the proposals brought to the company:
 \begin{itemize}
-    \item Saas
-    \item Paas
-    \item Iaas
+    \item Public cloud - PaaS - Amazon RDS - Amazon S3
+    \item Public cloud - Elastic Beanstalk - Amazon RDS - Amazon S3
+    \item Public cloud - PaaS - third party storage service - Amazon EC2
 \end{itemize}
-\paragraph{Amazon Elestic Beanstalk}
-\label{paragraph:amazon_elastic_beanstalk}
-[TO DO]
-And different kind of network topology such as:
-\begin{itemize}
-    \item Private cloud
-    \item Public cloud
-\end{itemize}
-
-%\section{System Architecture}
+Based on the first analysis phase and according to the company, it has been decided to start working with Amazon Elastic Beanstalk (IaaS) deployed on a public cloud and Amazon RDS / Amazon S3 as storage cloud services.
