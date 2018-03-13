@@ -21,7 +21,7 @@ The notification system is triggered by DB events and carried on by AWS Lambda f
 
 \section{Ecg Workflow}
 \label{section:ecgworkflow}
-Resting Electrocardiogram (digital electrocardiogram definition \ref{subsection:ecgdigitaliation}) are uploaded from different device types such as mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST interface (details about REpresentational State Transter\ref{paragraph:REST}). The exam is stored in a \textit{pending} state and every associated physician notified for the anamnesis provisioning.
+Resting Electrocardiogram (digital electrocardiogram definition \ref{subsection:ecgdigitaliation}) are uploaded from different device types such as mobile phones, desktop computers and Cardioline specific machines to EcgWebApp through a specific REST interface (details about REpresentational State Transter\ref{subsection:REST}). The exam is stored in a \textit{pending} state and every associated physician notified for the anamnesis provisioning.
 The user interface for a physician with anamnesis providing rights logged in is displayed in fig.\ref{fig:todo_anamnesi}.
 Once the history of a \textit{pending} exam has been supplied (screenshot at fig.\ref{fig:aggiunta_anamnesi}) it passes to a \textit{ready} state. At this point every associated doctor with review role and permission, usually a cardiologist, is notified and allowed to write its own conclusion, as showed in figure \ref{fig:aggiunta_anamnesi}, and eventually ask for a second opinion from another expert. The exam state is finally set to \textit{confirmed} and the patient doctor notified.
 \begin{figure}[h]
@@ -92,7 +92,7 @@ The system admin is allowed to login and perform CRUD on users and buckets resou
 Here is presented a set of client applications which interact with the previously defined components, EcgWebApp (\ref{paragraph:ecgwebapp}) and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) over the HTTP protocol.
 \paragraph{Touch Ecg}
 Touch Ecg is a Cardioline electrocardiograph 12-lead (more details for 12-lead at \ref{subsection:12leadecg}) application for tablet PC: it acquires raw electrocardiograms data from the compatible devices, which are eventually analysed later by the \textit{"Glasgow"} \cite{glasgow} interpretation algorithm.\\
-After a configuration phase, where the user is asked to provide the endpoint which the waveforms should be uploaded to, it is possible to transfer ECG-SCP (informations about SCP-ECG file format at \ref{subsection:ecgdigitaliation}) files via a REST WebService (\ref{paragraph:REST}).
+After a configuration phase, where the user is asked to provide the endpoint which the waveforms should be uploaded to, it is possible to transfer ECG-SCP (informations about SCP-ECG file format at \ref{subsection:ecgdigitaliation}) files via a REST WebService (\ref{subsection:REST}).
 \paragraph{Web Uploader}
 It is a stand-alone client application developed specifically to save, from Cardioline devices, long time registrations, as Holters are, and upload them. Because of such document's length an upload protocol has been built to ensure all data will reach the WebReceiver endpoint, illustrated in fig. \ref{fig:holter_sequence_diagram}.
 \begin{figure}[h]
