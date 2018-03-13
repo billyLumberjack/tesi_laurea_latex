@@ -115,21 +115,21 @@ Although the aim is the same of REST, this kind of approach is explicitly differ
 \section{Standard for Interoperability}
 \subsection{12-lead ECG}
 \label{subsection:12leadecg}
-12-Lead Ecg is one of the most used methodology in clinical cardiac medicine, it consists on attaching 10 electrodes on the surface of the limbs and the chest and therefore generates 12-lead: 12 groups of signals. The overall magnitude of the heart's electrical potential is then measured from twelve different angles (called leads) and is recorded in seconds over a period of time.\\
+12-Lead Ecg is one of the most used methodology in clinical cardiac medicine, it is performed by attaching 10 electrodes on the surface of the limbs and the chest and then 12 groups of signals are generated while their signal recorded. The overall magnitude of the heart's electrical potential is then measured from twelve different angles (called leads) and is recorded in seconds over a period of time.\\
 The graph of voltage versus time is referred to as electrocardiogram, which is considered the main tool for standard ECG analysis. \cite{electrocardiography_it} \cite{electrocardiography_en}\\
 This methodology is fundamental for Myocardial infarction, Ischemia, Heart arrhythmia, Heart failure, Artificial cardiac pacemaker interested patients. Traditionally each instrument generates vendor-specific waveform data formats which are compressed or encrypted by their own algorithms.\\
-Unfortunately clinically used 12-lead ECG instruments are limited to the use in the hospitals. Due to the great variability of 12-lead ECG instruments and medical specialists interpretation skills, it remains a challenge to deliver rapid and accurate 12-lead ECG reports with senior cardioligists decision making support.\cite{Hsieh2012}
+Instruments used for clinical 12-lead ECG recording are bounded to the use in hospital or clinics. Still 12-lead ECG reports are unavailable in remote or difficult to reach areas, especially for emergency cases where speed is essential. Indeed different 12-lead ECG instruments and specialists interpretation skills are barriers against a reliable healthcare.
+\cite{Hsieh2012}
 %\subsection{Dynamic ECG}
 %\subsection{Holter monitor}
 
 \subsection{ECG Digitalization}
 \label{subsection:ecgdigitaliation}
-The transmission, storage, and management of digital ECG signals have turned into major topics of debate and investigation. Within the context of this debate, the standardization of these processes has been a key issue lasting recent decades. \cite{trigo} The result is a multitude of format and standard which of course hinder the design and development of end-to-end standard-based systems, even if a lot of mapping procedures between ECG formats has been created to solve the problem.\\
-Indeed a wide variety of experience in the use of the SCP-ECG standard can be found in the literature over last two decades [73]–[81]. This proliferation of literature proves the interest of the scientific community in this standard, and makes SCP-ECG one of the most widespread initiatives in medical informatics standardization [82].
-The history of the standard starts in 1989-1990 when European, American and Japanese manufacturers jointly worked and agreed on SCP-ECG development, to allow full interoperability between ECG devices and generic host systems.\\
-The aim was the digital exchange of ECG signals and related metadata.
+The increasing spread of IT technologies over healthcare systems, made the management of digital electrocardiogram signals one of the most debated and investigared topic in e-health literature. Because an uncoordinated development of several standard the convergence to a unique format has been a key issue. \cite{trigo} The current landscape is a wide variety of different file format and standard which surely makes the creation of end to end and standardized solution more challenging, even if lots of mapping procedures over ECG formats has been created as open source softwares.\\
+Although the standards situation makes development more difficult there are many examples in literature using a common SCP-ECG file format to store cardiac weva form [73]–[81] of \cite{trigo}. This is a clear signal of a general interest around SCP-ECG as a standard by the scientific community. The history of the standard starts in 1989-1990 when European, American and Japanese manufacturers jointly worked and agreed on SCP-ECG development, to allow full interoperability between ECG devices and generic host systems.\\
+The aim was to exchange ECG signals and related metadata.
 Later in 1993 it became an European ENV code (Europäische Norm Vorübergehend: a provisional eurocode to indicate a test period), but became an offical EN eurocode only in 2005, after two years in 2007 it has been revised and later in 2009 adopted as an ISO (ISO 11073-91064:2009).\\
-An SCP-ECG revision Project Team lead by Paul Rubel and Alois Schloegl has been nominated in 2014, with the mission of keeping the useful and up-to-date parts of the standard more or less intact, removing or revising the outdated parts and extending the standard by including new measurements and recording modalities, such as long-term and stress test recordings.\cite{danilopani}\\
+In 2014 a team which mission was to maintain and update SCP-ECG standard. Their tasks comprehended remove, revision and extend the file format parts taking into account new methodologies and technologies.\cite{danilopani}\\
 The standard addresses specifically compression and communication of resting ECGs for different methodologies such as Holter, Exercise ECGs and real-time monitoring.\\
 In 2002, the first open source online platform for SCP-ECG certification and conformance testing has been developed.\cite{Chronaki}\\
 
@@ -139,7 +139,7 @@ Medical record, medical chart and health record are different terms to describe 
 Traditionally, health records were written on paper, maintained in folders divided into sections based on the type of note, and only one copy was available.
 Computer Technology developed in the 60s and 70s laid the foundation for the development of the Electronic Health Record.\\
 As inadequacies of the paper record became increasingly more apparent in 1992, the American Institute of Medicine advocated a shift from a paper-based to an electronic medical record one.\cite{Evans2016ElectronicHR}\\
-An Electronic Health Record (EHR) is defined as a repository of many Electronic Medical Records (EMR), which are a digital version of a chart with patient information stored in a computer, it refers to everything possible to find in a paper chart, such as medical history, diagnoses, medications, immunization dates and allergies.\cite{emr}\\
+An Electronic Health Record (EHR) is defined as \textit{"a repository of many Electronic Medical Records (EMR), which are a digital version of a chart with patient information stored in a computer, it refers to everything possible to find in a paper chart, such as medical history, diagnoses, medications, immunization dates and allergies.}\cite{emr}\\
 Indeed represents a medical record within a single facility, such as a doctor's office or a clinic.\\
 Around 1992 in US, EHRs were developed and used at a number of academic inpatient and outpatient medical facilities, but none contained all the information in the paper chart and most EHRs today are still a hybrid collection of computerized and paper data.
 \cite{Evans2016ElectronicHR}\\
@@ -149,10 +149,9 @@ In 2002, an experts group from Cup2000 Spa designed a regional e-health network 
 Recently in 2015 the FSE has been technically defined and each region started its own repository with the related IT company.
 \cite{smarthealth}\\
 Even if it not clear when third-party stakeholders and companies which produces EMR will be able to submit their data to local repositories, it is known that such services will be available, at least for hospitals, through SOAP web services.
+
 \subsection{Accredited organization}
-Health Level Seven International (HL7), is a non-profit organization involved in the development of international healthcare informatics interoperability standards known as Health Level 7 (HL7).\\
-HL7 is an international community of healthcare subject matter experts and information scientists collaborating to create a framework (and related standards) for the exchange, integration, sharing, and retrieval of electronic health information.[2] HL7 promotes the use of such informatics standards within and among healthcare organizations to increase the effectiveness and efficiency of healthcare information delivery for the benefit of all.
-\cite{hl7}
+To develop international healthcare interoperability standards a no-profit organization has been composed from several contries all over the world, Health Level 7 (HL7) \textit{is an international community of healthcare subject matter experts and information scientists collaborating to create a framework for the exchange, integration, sharing, and retrieval of electronic health information.} Its target is to spread the use and knowledge of open standard in healthcare informatic systems, to improve interoperability among different systems and their communication efficiency. \cite{hl7}
 
 
 \subsection{eHealth (Cloud Computing Application To Medical Device)}
@@ -162,5 +161,5 @@ Already in 2012 was possible to observe many healthcare providers shifting the b
 Infact the adoption of CC technologies can significantly reduce IT costs while improving patient care services, solve resources scarcity problems due to distance and experts avaialability. \cite{AbuKhousa}
 It is possible to find many examples of e-health cloud implementation, here are quoted some of the latest,\\\\
 Shah J.Miah et al. developed an e-health consultancy system using cloud computing that enables doctors and healthcare workers to identify and treat non-communicable diseases in rural and remote communities in Bangladesh, a developing nation. \cite{MIAH2017311}\\\\
-Sri Vijay BharatPeddi et al. propose a cloud-based mobile e-health daily calorie intake measurement system that can classify food objects in the plate and further compute the overall calorie of each food object with high accuracy. The novelty of the system is to avoid the  heavy offload of computational system functions to the cloud, but also employing an intelligent cloud-broker mechanism to strategically and efficiently utilize cloud instances \cite{PEDDI201771}\\\\
+Sri Vijay BharatPeddi et al. propose a system able to classify food object inside a dish by a picture taken from a camera, then it is able to compute the overall calories intake with considerable accuracy. They said that \textit{"The novelty of the system is to avoid the  heavy offload of computational system functions to the cloud, but also employing an intelligent cloud-broker mechanism to strategically and efficiently utilize cloud instances"} \cite{PEDDI201771}\\\\
 Mohamed Estai et al. showed a store-and-forward telemedicine platform “Remote-I” to assist in the screening of oral diseases using an image acquisition Android app operated by 17 teledental assistants. A total of 485 images (five images per case) were directly transmitted from the Android app to the server. Then a panel of five dental practitioners assessed the images and reported their diagnosis.\cite{mohamedestai}
