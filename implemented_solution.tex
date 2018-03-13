@@ -10,7 +10,7 @@ Below are presented the system architecture and details of the realized prototyp
     \caption{Architecture Scheme}
     \label{fig:architecture}
 \end{figure}
-Since Amazon Elastic Beanstalk (EB defined in \ref(definition:beanstalk)) has been used as the core component of the system, it has been possible to use an Infrastructure as a Service (IaaS \ref{paragraph:Iaas}) grade of customization, with an easier configuration and building phase as if the system was Platform as a Service (PaaS \ref{paragraph:Paas}) instead.\\
+Since Amazon Elastic  (EB defined in \ref(definition:beanstalk)) has been used as the core component of the system, it has been possible to use an Infrastructure as a Service (IaaS \ref{paragraph:Iaas}) grade of customization, with an easier configuration and building phase as if the system was Platform as a Service (PaaS \ref{paragraph:Paas}) instead.\\
 As shown in picture \ref{fig:architecture}, everything but the Amazon Simple Email Service (SES \cite{AmazonSes}) service is hosted in the eu-central-1 region in Frankfurt to reduce latency, minimize costs and keep healthcare data in an European law venue, as in production would be.
 The region is divided into availability zones connected each other with low-latency links, to handle potential instance failures by replacing them with the standby ones located in a different availability zone.\\
 EB handles the WebServer instances: one for the EcgWebApp, more details in section \ref{paragraph:ecgwebapp} and the other one for Ecg WebReceiver,section \ref{paragraph:ecgwebreceiver}. The interaction is then allowed to authenticated users bounded to their capabilities and role.\\
