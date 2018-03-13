@@ -48,13 +48,6 @@ Starting from a skeleton CDA, where common values for general electrocardiograms
 To keep this mechanism as elastic and maintainable as possible, every piece of information injected follows a predefined rule inside a configuration file.\\ \\
 An example is displayed: the starting SCP in fig. \ref{fig:scp_view} and the resulting Clinical Document Architecture R2 document in snippet \ref{lst:ref}. It is important to note that even if the wevaforms raw data are lost because the conversion, the PDF representation of such information is still encapsulates inside \textit{\textlangle{}nonXMLBody\textrangle{}} tag as a \textit{base64} string.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth,height=10cm,keepaspectratio]{img/scp_view}
-    \caption{ECG-SCP starting point}
-    \label{fig:scp_view}
-\end{figure}
-
 \begin{lstlisting}[caption=CDA R2 from SCP example,label=lst:ref]
 <ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:voc="urn:hl7-org:v3/voc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
   <realmCode code="IT" />
@@ -90,19 +83,12 @@ An example is displayed: the starting SCP in fig. \ref{fig:scp_view} and the res
     <time value="20180308120513" />
     <assignedAuthor>
       <id root="2.16.840.1.113883.2.9.4.3.2" extension="$CODFISCASAUT$" assigningAuthorityName="Ministero Economia e Finanze" />
-      <telecom>
-      </telecom>
-      <telecom>
-      </telecom>
-      <telecom>
-      </telecom>
+      <telecom>+00 000 00 00 000</telecom>
       <assignedPerson>
         <name>
-          <prefix>
-          </prefix>
-          <family>
-          </family>
-          <given>Stefania Marchesi</given>
+          <prefix></prefix>
+          <family>Marchesi</family>
+          <given>Stefania</given>
         </name>
       </assignedPerson>
     </assignedAuthor>
@@ -129,7 +115,13 @@ An example is displayed: the starting SCP in fig. \ref{fig:scp_view} and the res
   </component>
 </ClinicalDocument>
 \end{lstlisting}
-Refer to Listing~\ref{lst:ref}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth,height=12cm,keepaspectratio]{img/scp_view}
+    \caption{ECG-SCP starting point}
+    \label{fig:scp_view}
+\end{figure}
 
 \section{Interoperability related architecture components}
 The biggest contribution has been provided to the architecture components which interact with an external service. As it is possible to observe in figure \ref{fig:architecture} they are mainly two, EcgWebApp (\ref{paragraph:ecgwebapp}) for resting and cardiac stress test and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) for Holter methodology.
