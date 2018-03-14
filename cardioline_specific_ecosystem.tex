@@ -19,7 +19,7 @@ To carry out the target, these were the main challenges:
 \end{itemize}
 The resulting prototype had to be sufficiently flexible and configurable to be adapted over several environments.
 
-\subsection{Functional and Non functional requirements} As reported above, Cardioline together with FBK came up with additional features which the current version of their system does not support.\\The following are the functional requirements.
+\subsection{Functional and Non functional requirements} As reported above, Cardioline together with academic and research partners came up with additional features which the current version of their system does not support.\\The following are the functional requirements.
 \paragraph{Anamnesis}The future management system should let the single tenant decide wether or not to allow cardiologist submit their report even if the patient doctor didn't upload the exam with an anamnesis description. This feature is in particular important for pharmacies, because their technicians are not qualified to insert patient anamnesis. In this way every Cardioline customer (which correspond to hospital, clinic, etc..) can exert its own policy about anamnesis and reviews.
 \paragraph{Notifications}Currently Cardioline web application software does not provide a notification features, mainly because it is hosted on LANs.\\Because the architectural change enabled ubiquitous examination and analysis, it also imposes the development of a reliable notification system. Once a new electrocardiogram is submitted, if the system is in this way configured, a notification is sent to users which have anamnesi providing rights on it. If the option is not activated by the tenant user with exam review privileges are notified.\\In the case an anamnesis is submitted, the associated physician are notified for a new available ECG.\\Finally when an ECG review is submitted by physician, the user who is taking care of the associated patient receives a notification of the process completion.
 
@@ -40,8 +40,16 @@ Store data on remote environment rather than a local one implies a different leg
 
 
 \section{Proposed solutions}
+\label{section:proposed_solutions}
 Several solutions were elaborated and proposed to the company, each of them respects the above requirements.\\
-Amazon was choosen as service provider because ot not only offers storage servers located in Europe but they are also CISPE certificated: they ensure data be processed and saved into European Union lying servers.\\
+Amazon was choosen as service provider because it not only offers storage servers located in Europe, but they are also CISPE certificated: they ensure data be processed and saved into European Union lying servers.\\
+Their cloud servers locations are spread around 18 regions over the world, other four have been planned for the next future. Hence it is easier to store physically data for an Amazon customer and make the service compliant to the local legislation. In case of an expansion of Cardioline system, thanks to the cloud region structure the process will be simplified. In figure \ref{fig:amazon_cloud_region} it is possible to observe where Amazon cloud regions are located and where did they plan to host the future ones.
+\begin{figure}[h]
+    \includegraphics[width=\textwidth,keepaspectratio]{img/amazon_cloud_region}
+    \caption{Geographical location of the different Amazon Cloud Regions}
+    \label{fig:amazon_cloud_region}
+\end{figure}
+
 Farther the provider was interesting for a particular service they offer named Elastic Beanstalk \label(definition:beanstalk): it allows to manage web and application service. Handles dynamically the computing and network resources allocated to each application, indeed it provides the admin with a real-time monitoring of the applications state. Everything is carried on by Beanstalk leaving the possibility to go deeply and handle directly AWS resources as if the system were PaaS instead.\\
 The entire cost is computed by summing up just the usage of AWS resources, meaning that Beanstalk does not provide additional costs to manage automatically the underlying IaaS.
 In this phase was also took into account a third party service called \textit{chino.io} so to outsource the storage of sensible data. Chino was granted to be laws compliant in term of privacy, security and easy to integrate by adding an external REST adapter toward their service.
