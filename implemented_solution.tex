@@ -55,7 +55,7 @@ An example is displayed: the starting SCP in fig. \ref{fig:scp_view} and the res
 The biggest contribution has been provided to the architecture components which interact with an external service. As it is possible to observe in figure \ref{fig:architecture} they are mainly two, EcgWebApp (\ref{paragraph:ecgwebapp}) for resting and cardiac stress test and Ecg WebReceiver (\ref{paragraph:ecgwebreceiver}) for Holter methodology.
 
 \subsection{Web service and application}
-These components instances are directly handled by Amazon Web Service Elastic Beanstalk (details at \ref{fig:architecture}): their load balancers and resources are dinamically allocated over the current request, load and configured parameters.\\
+These components instances are directly handled by Amazon Web Service Elastic Beanstalk (details at \ref{fig:architecture}): their load balancers and resources are dynamically allocated over the current request, load and configured parameters.\\
 They both run on a 64-bit Windows Server 2012 R2 (with 32-bit compatibility) virtual machine executing IIS 8.5.
 \paragraph{EcgWebApp}
 \label{paragraph:ecgwebapp}
@@ -81,7 +81,7 @@ The \textit{view} manages data presentation, serving html pages or json formatte
     \label{fig:app_resource_pattern}
 \end{figure}
 WebServices included in EcgWebApp are based on the ASP .NET WebApi Framework: a REST interface triggers a specific action on a resource depending on the URL parameters and the HTTP verb used. Basic Authentication is used to provide access control to web resources.\\ \\
-A specific module has been developed to prepare reviewed electrocardiograms for Electronic Health Record. Any time a user with review priviledges confirm his/her analysis, a italian EHR (aka FSE) compliant CDA document (details at \ref{subsection:clinical_document_architecture}) is then built and eventually submitted. (EHR - Electronic Healt Record and FSE - Fascicolo Sanitario Elettronico were defined in \ref{subsection:electronic_health_record})
+A specific module has been developed to prepare reviewed electrocardiograms for Electronic Health Record. Any time a user with review privileges confirm his/her analysis, a italian EHR (aka FSE) compliant CDA document (details at \ref{subsection:clinical_document_architecture}) is then built and eventually submitted. (EHR - Electronic Healt Record and FSE - Fascicolo Sanitario Elettronico were defined in \ref{subsection:electronic_health_record})
 \paragraph{Ecg Web Receiver}
 \label{paragraph:ecgwebreceiver}
 Similarly to EcgWebApp, (\ref{paragraph:ecgwebapp}) Ecg WebReceiver is an ASP .NET MVC application with a REST webservice module developed with WebApi framework.\\
